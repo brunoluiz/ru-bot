@@ -4,23 +4,30 @@ const library = new builder.Library('Help');
 const pru = '**Pruuu!** ';
 const options = {
   'Quero o cardápio de hoje': {
-    uri: 'Menu:Today'
+    id: 'Menu:Today'
   },
   'Quero o cardápio de amanhã': {
-    uri: 'Menu:Tomorrow'
+    id: 'Menu:Tomorrow'
   },
   'Quero o cardápio da semana': {
-    uri: 'Menu:Week'
+    id: 'Menu:Week'
   }
 }
 
-library.dialog('Options', (session) => {
+library.dialog('Options', [(session) => {
   builder.Prompts.choice(session,
     pru + 'Não entendi o que você pediu... o que você quer?',
     options, {
       maxRetries: 0
     });
-});
+}, (session, results) => {
+  if (results.response) {
+    const option = options[results.response.entity];
+    session.replaceDialog(option.id);
+  }
+
+  session.endDialog();
+}]);
 
 module.exports = library;
 module.exports.options = options;

@@ -3,7 +3,7 @@ const fs = require('fs');
 const Formatter = require('../utils/formatter');
 
 const pru = '**Pruuu!** ';
-const ruData = JSON.parse(fs.readFileSync('tests.json', 'utf8'));
+const ruData = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 const library = new builder.Library('Menu');
 
 const getDateMenuItem = (data, userDate) => {

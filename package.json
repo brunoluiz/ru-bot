@@ -9,6 +9,7 @@
   "author": "Bruno Luiz da Silva",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.15.3",
     "botbuilder": "^3.4.4",
     "restify": "^4.3.0"
   }

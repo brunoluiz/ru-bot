@@ -1,5 +1,4 @@
 const builder = require('botbuilder');
-
 const library = new builder.Library('Help');
 
 const pru = '**Pruuu!** ';

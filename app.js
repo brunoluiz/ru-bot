@@ -38,7 +38,6 @@ intents.onDefault([
         session.endDialog();
       }
 
-
       const option = options[results.response.entity];
       session.beginDialog(option.uri);
     }

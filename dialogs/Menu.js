@@ -6,63 +6,53 @@ const pru = '**Pruuu!** ';
 const ruData = JSON.parse(fs.readFileSync('tests.json', 'utf8'));
 const library = new builder.Library('Menu');
 
-library.dialog('Today', (session) => {
-  // Create a Today Date object
-  let today = new Date();
-  today.setUTCHours(0, 0, 0, 0);
-
-  // Fetch the menu and search for the specified day
-  let item = ruData.menu.filter((item) => {
-    let date = new Date(item.date);
-    return +date == +today;
+const getDateMenuItem = (data, userDate) => {
+  let item = data.filter((item) => {
+    let itemDate = new Date(item.date);
+    return +itemDate == +userDate;
   });
 
-  // If there is no menu item for this date, return an error
-  if(item.length != 1) {
+  if (item.length == 0) throw 'no item';
+  else if (item.length > 1) throw 'date issue';
+
+  return item[0];
+}
+
+const sendMenu = (session, offset) => {
+  if (!ruData) session.replaceDialog('Menu:Error');
+
+  // Create the date object, based on the specified object
+  let today = new Date();
+  today.setUTCHours(0, 0, 0, 0); // Reset the hours
+  let offsetDate = today.setDate(today.getDate() + offset);
+
+  // Get the specified date menu item
+  let item;
+  try {
+    item = getDateMenuItem(ruData.menu, offsetDate);
+  } catch (err) {
+    console.log(err);
     session.replaceDialog('Menu:Error');
   }
 
   // Format the menu and send it
-  let menu = Formatter.menu(item[0]);
-
-  session.send('# Cardápio de Hoje!!!');
+  let menu = Formatter.menu(item);
   session.send(menu);
   session.send(pru);
   session.endDialog();
-});
+}
 
-library.dialog('Tomorrow', (session) => {
-  // Create a Today Date object
-  let today = new Date();
-  today.setUTCHours(0, 0, 0, 0);
+library.dialog('Today', (session) => sendMenu(session, 0));
 
-  // Creat the Tomorrow object
-  let tomorrow = today.setDate(today.getDate() + 1);
+library.dialog('Tomorrow', (session) => sendMenu(session, 1));
 
-  // Fetch the menu and search for the specified day
-  let item = ruData.menu.filter((item) => {
-    let date = new Date(item.date);
-    return +date == +today;
-  });
-
-  // If there is no menu item for this date, return an error
-  if(item.length != 1) {
-    return session.replaceDialog('Menu:Error');
-  }
-
-  // Format the menu
-  let menu = Formatter.menu(item[0]);
-
-  session.send('# Cardápio de Amanhã!!!');
-  session.send(menu);
-  session.send(pru);
+library.dialog('Error', (session) => {
+  session.send(pru + 'Esse cardápio não está disponível');
   session.endDialog();
 });
 
 library.dialog('Week', (session) => {
-  if (!ruData) {
-    session.replaceDialog('Menu:Error');
-  }
+  if (!ruData) session.replaceDialog('Menu:Error');
 
   session.send('# Cardápio da Semana!!!');
   session.sendTyping();
@@ -74,11 +64,6 @@ library.dialog('Week', (session) => {
   });
 
   session.send(pru);
-  session.endDialog();
-});
-
-library.dialog('Error', (session) => {
-  session.send(pru + 'Esse cardápio não está disponível');
   session.endDialog();
 });
 

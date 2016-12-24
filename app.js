@@ -2,7 +2,9 @@ const mongoose = require('./config/mongoose');
 const restify = require('restify');
 const fs = require('fs');
 const Menu = require('./models/Menu');
-const bot = require('./bot').connector;
+const Subscription = require('./models/Subscription');
+const bot = require('./bot').bot;
+const connector = require('./bot').connector;
 
 // Setup Restify Server
 const server = restify.createServer();
@@ -11,7 +13,7 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
 });
 
 // Add API endpoints
-server.post('/api/messages', bot.listen());
+server.post('/api/messages', connector.listen());
 
 server.get('/api/menu', (req, res, next) => {
   Menu.getActualWeek((err, result) => {
@@ -37,5 +39,12 @@ server.get('/api/update/:token', (req, res, next) => {
 });
 
 server.get('/api/notify/today', (req, res, next) => {
+  // Get all subscriptions and send the Today's Menu
+  Subscription.find().exec(
+    (err, subscriptions) =>
+    subscriptions.forEach((subscription) =>
+    bot.beginDialog(subscription.address, 'Menu:Today'))
+  );
 
+  res.send(200);
 });

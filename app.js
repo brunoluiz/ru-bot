@@ -1,6 +1,6 @@
 const restify = require('restify');
 const builder = require('botbuilder');
-const options = require('./dialogs/Help').options;
+const intents = require('./config/intents');
 
 //=========================================================
 // Bot Setup
@@ -20,29 +20,9 @@ const connector = new builder.ChatConnector({
 const bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
-// Setup the Intents Dialog
-const intents = new builder.IntentDialog();
-
 // Load the libraries (dialogs)
 bot.library(require('./dialogs/Menu'));
 bot.library(require('./dialogs/Help'));
 
-// Init the entry point to the Intents object
+// Init the entry point with the Intents config
 bot.dialog('/', intents);
-
-// Intents
-intents.onDefault([
-    (session, args, next) => session.beginDialog('Help:Options'),
-    (session, results, next) => {
-      if (!results.response) {
-        session.endDialog();
-      }
-
-      const option = options[results.response.entity];
-      session.beginDialog(option.uri);
-    }
-]);
-
-intents.matches(/^hoje/i, (session) => session.beginDialog('Menu:Today'));
-intents.matches(/^amanhã/i, (session) => session.beginDialog('Menu:Tomorrow'));
-intents.matches(/^semana/i, (session) => session.beginDialog('Menu:Week'));

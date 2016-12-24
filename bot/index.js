@@ -8,7 +8,8 @@ const connector = new builder.ChatConnector({
 });
 const bot = new builder.UniversalBot(connector, {
   localizerSettings: {
-    defaultLocale: 'pt-BR'
+    defaultLocale: 'pt-BR',
+    localePaths: './locale'
   }
 });
 

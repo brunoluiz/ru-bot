@@ -1,8 +1,10 @@
+const mongoose = require('./config/mongoose');
 const restify = require('restify');
 const builder = require('botbuilder');
 const intents = require('./config/intents');
 const axios = require('axios');
 const fs = require('fs');
+const Menu = require('./models/Menu');
 
 // Setup Restify Server
 const server = restify.createServer();
@@ -41,23 +43,28 @@ bot.on('conversationUpdate', (message) => {
 // Add API endpoints
 server.post('/api/messages', connector.listen());
 
+server.get('/api/menu', (req, res, next) => {
+  Menu.find().sort({date: -1}).limit(7)
+  .exec((err, result) => {
+    res.send(result);
+  });
+});
+
 server.get('/api/update/:token', (req, res, next) => {
 
-  axios.get('https://jsonplaceholder.typicode.com/posts/1')
-  .then((response) => {
-    res.send(200);
+  // FIXME: Replace this with the actual scrapper data
+  let data = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 
-    let contents = JSON.stringify(response.data);
-    fs.writeFile('data.js', contents, (err) => {
-      if (err) throw err;
-      console.log('Updated RU data!');
-    });
-  })
-  .catch(function (error) {
-    console.log(error);
-    res.send(500);
+  // Add a Date object to the item
+  let menu = data.menu.map((item) => {
+    item.date = new Date(item.date);
+    return item;
   });
 
+  // Batch insert all the menu items in the Database
+  Menu.collection.insert(menu);
+
+  res.send(200);
 });
 
 server.get('/api/notify/today', (req, res, next) => {

@@ -19,7 +19,7 @@
   "subscribe:cancel": "Você deseja cancelar sua assinatura diária?",
   "subscribe:canceled": "Assinatura cancelada! Caso desejar, você pode re-assinar a qualquer momento ;)",
   "subscribe:notcanceled": "Assinatura não cancelada!",
-  "subscribe:nosubscription": "Você não está cadastrado para receber notificações!",
+  "subscribe:notsubscribed": "Você não está cadastrado para receber notificações!",
   "subscribe:alreadysubscribed": "Você já está cadastrado para receber notificações!",
 
   "options:notvalid": "Opção inválida!"

@@ -16,6 +16,7 @@ const bot = new builder.UniversalBot(connector, {
 // Load the libraries (dialogs)
 bot.library(require('./dialogs/Menu'));
 bot.library(require('./dialogs/Help'));
+bot.library(require('./dialogs/Subscribe'));
 
 // Init the entry point with the Intents config
 bot.dialog('/', intents);

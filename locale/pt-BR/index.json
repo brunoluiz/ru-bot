@@ -17,6 +17,8 @@
   "subscribe:confirmed": "Assinatura confirmada! Vou enviar notificações todos os dias pela manhã!",
   "subscribe:notconfirmed": "Assinatura não realizada",
   "subscribe:cancel": "Você deseja cancelar sua assinatura diária?",
+  "subscribe:canceled": "Assinatura cancelada! Caso desejar, você pode re-assinar a qualquer momento ;)",
+  "subscribe:notcanceled": "Assinatura não cancelada!",
 
   "options:notvalid": "Opção inválida!"
 }

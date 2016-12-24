@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const menuSchema = mongoose.Schema({
+let menuSchema = mongoose.Schema({
   basics: {type: String, required: false},
   main_dish: {type: String, required: false},
   side_dish: {type: String, required: false},
@@ -10,6 +10,13 @@ const menuSchema = mongoose.Schema({
   createdAt: {type: Date, required: true, default: Date.now}
 });
 
+menuSchema.statics.getActualWeek = (callback) => (
+  mongoose.model('Menu').find(callback).limit(7).sort({date: -1})
+);
+
+menuSchema.statics.getDay = (day, callback) => (
+  mongoose.model('Menu').findOne({date: day}, callback)
+)
 
 let Menu = mongoose.model('Menu', menuSchema);
 

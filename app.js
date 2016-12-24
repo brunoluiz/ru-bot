@@ -44,8 +44,7 @@ bot.on('conversationUpdate', (message) => {
 server.post('/api/messages', connector.listen());
 
 server.get('/api/menu', (req, res, next) => {
-  Menu.find().sort({date: -1}).limit(7)
-  .exec((err, result) => {
+  Menu.getActualWeek((err, result) => {
     res.send(result);
   });
 });

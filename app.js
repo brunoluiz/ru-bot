@@ -2,7 +2,8 @@ const restify = require('restify');
 const builder = require('botbuilder');
 const fs = require('fs');
 
-const fixture = JSON.parse(fs.readFileSync('tests.json', 'utf8'));
+const pru = '**Pruuu!** ';
+const ruData = JSON.parse(fs.readFileSync('tests.json', 'utf8'));
 
 //=========================================================
 // Bot Setup
@@ -31,35 +32,101 @@ bot.dialog('/', intents);
 /* ***********************************
 Bots Dialogs
 ************************************ */
+const formatter = {
+  menu: function(item) {
+    if(!item) {
+      return '';
+    }
+
+    let menu = '';
+    menu += '### ' + item.date + '\n\n';
+    menu += '- **Acompanhamento:** ' + item.basics + '\n\n';
+    menu += '- **Prato principal:** ' + item.main_dish + '\n\n';
+    menu += '- **Complemento:** ' + item.side_dish + '\n\n';
+    menu += '- **Salada:** ' + item.salad + '\n\n';
+    menu += '- **Sobremesa:** ' + item.dessert + '\n\n';
+
+    return menu;
+  }
+}
+
+/* ***********************************
+Bots Dialogs
+************************************ */
 
 bot.dialog('/menu/today', (session) => {
-  session.send('Cardápio de hoje');
+  // Create a Today Date object
+  let today = new Date();
+  today.setUTCHours(0, 0, 0, 0);
+
+  // Fetch the menu and search for the specified day
+  let item = ruData.menu.filter((item) => {
+    let date = new Date(item.date);
+    return +date == +today;
+  });
+
+  // If there is no menu item for this date, return an error
+  if(item.length != 1) {
+    session.beginDialog('/menu/error');
+  }
+
+  // Format the menu and send it
+  let menu = formatter.menu(item[0]);
+
+  session.send('# Cardápio de Hoje!!!');
+  session.send(menu);
+  session.send(pru);
   session.endDialog();
 });
 
 bot.dialog('/menu/tomorrow', (session) => {
-  session.send('Cardápio de amanhã');
+  // Create a Today Date object
+  let today = new Date();
+  today.setUTCHours(0, 0, 0, 0);
+
+  // Creat the Tomorrow object
+  let tomorrow = today.setDate(today.getDate() + 1);
+
+  // Fetch the menu and search for the specified day
+  let item = ruData.menu.filter((item) => {
+    let date = new Date(item.date);
+    return +date == +today;
+  });
+
+  // If there is no menu item for this date, return an error
+  if(item.length != 1) {
+    session.beginDialog('/menu/error');
+  }
+
+  // Format the menu
+  let menu = formatter.menu(item[0]);
+
+  session.send('# Cardápio de Amanhã!!!');
+  session.send(menu);
+  session.send(pru);
   session.endDialog();
 });
 
 bot.dialog('/menu/week', (session) => {
-  session.send('Cardápio da Semana!!!');
-  fixture.forEach((item) => {
-    const text = 'Dia: ' + item.date + '\n';
-    text += 'Acompanhamento: ' + item.basics + '\n';
-    text += 'Prato principal: ' + item.main_dish + '\n';
-    text += 'Complemento: ' + item.side_dish + '\n';
-    text += 'Salada: ' + item.salad + '\n';
-    text += 'Sobremesa: ' + item.dessert + '\n';
+  if (!ruData) {
+    session.beginDialog('/menu/error');
+  }
 
-    session.send(text);
+  session.send('# Cardápio da Semana!!!');
+  session.sendTyping();
+
+  // Fetch the menu data and send it
+  ruData.menu.forEach((item) => {
+    const menu = formatter.menu(item);
+    session.send(menu);
   });
-  session.send('Pruuu!');
+
+  session.send(pru);
   session.endDialog();
 });
 
 bot.dialog('/menu/error', (session) => {
-  session.send('Pruuu! Esse cardápio não está disponível');
+  session.send(pru + 'Esse cardápio não está disponível');
   session.endDialog();
 });
 
@@ -77,7 +144,7 @@ const options = {
 
 bot.dialog('/help', (session) => {
   builder.Prompts.choice(session,
-    'Pruuu! Não entendi o que você pediu... o que você quer?',
+    pru + 'Não entendi o que você pediu... o que você quer?',
     options, {
       maxRetries: 0
     });

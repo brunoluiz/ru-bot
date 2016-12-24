@@ -1,5 +1,8 @@
 const restify = require('restify');
 const builder = require('botbuilder');
+const fs = require('fs');
+
+const fixture = JSON.parse(fs.readFileSync('tests.json', 'utf8'));
 
 //=========================================================
 // Bot Setup
@@ -40,7 +43,23 @@ bot.dialog('/menu/tomorrow', (session) => {
 });
 
 bot.dialog('/menu/week', (session) => {
-  session.send('Cardápio da Semana');
+  session.send('Cardápio da Semana!!!');
+  fixture.forEach((item) => {
+    const text = 'Dia: ' + item.date + '\n';
+    text += 'Acompanhamento: ' + item.basics + '\n';
+    text += 'Prato principal: ' + item.main_dish + '\n';
+    text += 'Complemento: ' + item.side_dish + '\n';
+    text += 'Salada: ' + item.salad + '\n';
+    text += 'Sobremesa: ' + item.dessert + '\n';
+
+    session.send(text);
+  });
+  session.send('Pruuu!');
+  session.endDialog();
+});
+
+bot.dialog('/menu/error', (session) => {
+  session.send('Pruuu! Esse cardápio não está disponível');
   session.endDialog();
 });
 

@@ -2,7 +2,6 @@ const builder = require('botbuilder');
 const fs = require('fs');
 const Formatter = require('../utils/formatter');
 
-const pru = '**Pruuu!** ';
 const ruData = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 const library = new builder.Library('Menu');
 
@@ -36,9 +35,9 @@ const sendMenu = (session, offset) => {
   }
 
   // Format the menu and send it
-  let menu = Formatter.menu(item);
+  let menu = Formatter.menu(session, item);
   session.send(menu);
-  session.send(pru);
+  session.send('pru');
   session.endDialog();
 }
 
@@ -47,23 +46,23 @@ library.dialog('Today', (session) => sendMenu(session, 0));
 library.dialog('Tomorrow', (session) => sendMenu(session, 1));
 
 library.dialog('Error', (session) => {
-  session.send(pru + 'Esse cardápio não está disponível');
+  session.send('menu:error');
   session.endDialog();
 });
 
 library.dialog('Week', (session) => {
   if (!ruData) session.replaceDialog('Menu:Error');
 
-  session.send('# Cardápio da Semana!!!');
+  session.send('menu:weektitle');
   session.sendTyping();
 
   // Fetch the menu data and send it
   ruData.menu.forEach((item) => {
-    const menu = Formatter.menu(item);
+    const menu = Formatter.menu(session, item);
     session.send(menu);
   });
 
-  session.send(pru);
+  session.send('pru');
   session.endDialog();
 });
 

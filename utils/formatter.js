@@ -1,15 +1,26 @@
+const label = (str) => (
+  '- **' + str + ': **'
+);
+
 const Formatter = {
-  menu: function(item) {
+  menu: function(session, item) {
     if(!item) return '';
 
-    let menu = '### Cardápio de ' + item.date + '\n\n';
+    const locale = {
+      title: session.localizer.gettext(session.preferredLocale(), 'menu:format:title'),
+      basics: session.localizer.gettext(session.preferredLocale(), 'menu:format:basics'),
+      main_dish: session.localizer.gettext(session.preferredLocale(), 'menu:format:main_dish'),
+      side_dish: session.localizer.gettext(session.preferredLocale(), 'menu:format:side_dish'),
+      salad: session.localizer.gettext(session.preferredLocale(), 'menu:format:salad'),
+      dessert: session.localizer.gettext(session.preferredLocale(), 'menu:format:dessert'),
+    }
 
-    menu += (item.basics) ? ('- **Acompanhamento:** ' + item.basics + '\n\n') : '';
-
-    menu += (item.main_dish) ? ('- **Prato principal:** ' + item.main_dish + '\n\n') : '';
-    menu += (item.side_dish) ? ('- **Complemento:** ' + item.side_dish + '\n\n') : '';
-    menu += (item.salad) ? ('- **Salada:** ' + item.salad + '\n\n') : '';
-    menu += (item.dessert) ? ('- **Sobremesa:** ' + item.dessert + '\n\n') : '';
+    let menu = '### ' + locale.title + item.date + '\n\n';
+    menu += (item.basics) ? (label(locale.basics) + item.basics + '\n\n') : '';
+    menu += (item.main_dish) ? (label(locale.main_dish) + item.main_dish + '\n\n') : '';
+    menu += (item.side_dish) ? (label(locale.side_dish) + item.side_dish + '\n\n') : '';
+    menu += (item.salad) ? (label(locale.salad) + item.salad + '\n\n') : '';
+    menu += (item.dessert) ? (label(locale.dessert) + item.dessert + '\n\n') : '';
 
     return menu;
   }

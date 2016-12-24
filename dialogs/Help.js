@@ -1,7 +1,7 @@
 const builder = require('botbuilder');
 const library = new builder.Library('Help');
 
-const pru = '**Pruuu!** ';
+// FIXME: i18n 
 const options = {
   'Quero o cardápio de hoje': {
     id: 'Menu:Today'
@@ -15,11 +15,9 @@ const options = {
 }
 
 library.dialog('Options', [(session) => {
-  builder.Prompts.choice(session,
-    pru + 'Não entendi o que você pediu... o que você quer?',
-    options, {
-      maxRetries: 0
-    });
+  builder.Prompts.choice(session, 'help', options, {
+    maxRetries: 0
+  });
 }, (session, results) => {
   if (results.response) {
     const option = options[results.response.entity];

@@ -47,7 +47,7 @@ bot.dialog('/menu/today', (session) => {
 
   // If there is no menu item for this date, return an error
   if(item.length != 1) {
-    session.beginDialog('/menu/error');
+    session.replaceDialog('/menu/error');
   }
 
   // Format the menu and send it
@@ -75,7 +75,7 @@ bot.dialog('/menu/tomorrow', (session) => {
 
   // If there is no menu item for this date, return an error
   if(item.length != 1) {
-    session.beginDialog('/menu/error');
+    return session.replaceDialog('/menu/error');
   }
 
   // Format the menu
@@ -89,7 +89,7 @@ bot.dialog('/menu/tomorrow', (session) => {
 
 bot.dialog('/menu/week', (session) => {
   if (!ruData) {
-    session.beginDialog('/menu/error');
+    session.replaceDialog('/menu/error');
   }
 
   session.send('# Cardápio da Semana!!!');

@@ -1,3 +1,4 @@
+// Format the string as a markdown strong list item
 const label = (str) => (
   '- **' + str + ': **'
 );
@@ -15,10 +16,12 @@ const Formatter = {
       dessert: session.localizer.gettext(session.preferredLocale(), 'menu:format:dessert'),
     }
 
+    // Format the date as DD/MM/YYYY
     let date = item.date.getUTCDate() + '/';
     date += item.date.getUTCMonth() + '/';
     date += item.date.getUTCFullYear();
 
+    // Format the menu string as a Markdown string
     let menu = '### ' + locale.title + date + '\n\n';
     menu += (item.basics) ? (label(locale.basics) + item.basics + '\n\n') : '';
     menu += (item.main_dish) ? (label(locale.main_dish) + item.main_dish + '\n\n') : '';

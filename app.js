@@ -8,6 +8,9 @@ const connector = require('./bot').connector;
 
 require('dotenv').config();
 
+// Connect to the MongoDB
+mongoose.connect(process.env.MONGO_URL);
+
 // Setup Restify Server
 const server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {

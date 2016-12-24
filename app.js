@@ -6,6 +6,8 @@ const Subscription = require('./models/Subscription');
 const bot = require('./bot').bot;
 const connector = require('./bot').connector;
 
+require('dotenv').config();
+
 // Setup Restify Server
 const server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {

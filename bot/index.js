@@ -1,5 +1,6 @@
 const builder = require('botbuilder');
 const intents = require('./intents');
+require('dotenv').config();
 
 // Create the connector (needs to be configurated on the MS Platform)
 const connector = new builder.ChatConnector({
@@ -10,8 +11,7 @@ const connector = new builder.ChatConnector({
 // Create chat bot
 const bot = new builder.UniversalBot(connector, {
   localizerSettings: {
-    defaultLocale: 'pt-BR',
-    localePaths: './locale'
+    defaultLocale: process.env.LOCALE
   }
 });
 

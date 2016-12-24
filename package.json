@@ -1,7 +1,7 @@
 {
   "name": "pru-bot",
   "version": "0.1.0",
-  "description": "",
+  "description": "Fetches the UFSC Restaurant Menu and serves it through a bot, using Microsoft BotFramework",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "botbuilder": "^3.4.4",
+    "dotenv": "^2.0.0",
     "mongoose": "^4.7.4",
     "restify": "^4.3.0"
   }

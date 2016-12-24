@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 // Connect to the Database
-mongoose.connect('mongodb://localhost/prubot');
+require('dotenv').config();
+mongoose.connect(process.env.MONGO_URL);
 
 module.exports = mongoose;

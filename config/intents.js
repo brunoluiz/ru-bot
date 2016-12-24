@@ -13,12 +13,12 @@ intents.matches(/^semana/i, (session) => session.beginDialog('Menu:Week'));
 intents.onDefault([
     (session, args, next) => session.beginDialog('Help:Options'),
     (session, results, next) => {
-      if (!results.response) {
-        session.endDialog();
+      if (results.response) {
+        const option = options[results.response.entity];
+        session.replaceDialog(option.uri);
       }
 
-      const option = options[results.response.entity];
-      session.replaceDialog(option.uri);
+      session.endDialog();
     }
 ]);
 

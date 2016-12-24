@@ -1,5 +1,4 @@
 const builder = require('botbuilder');
-const options = require('../dialogs/Help').options;
 
 // Setup the Intents Dialog
 const intents = new builder.IntentDialog();

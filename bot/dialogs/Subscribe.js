@@ -2,7 +2,27 @@ const builder = require('botbuilder');
 const library = new builder.Library('Subscribe');
 const Subscription = require('../../models/Subscription');
 
+const isSubscribed = (session, callback) => Subscription.findOne({
+    user: session.message.address.user
+  }, (err, result) => {
+    if (result != null) return callback(session);
+  }
+);
+
+const isNotSubscribed = (session, callback) => Subscription.findOne({
+    user: session.message.address.user
+  }, (err, result) => {
+    if (result == null) return callback(session);
+  }
+);
+
 library.dialog('Subscribe', [(session) => {
+  // FIXME: activate this somehow...
+  // isSubscribed(session, (session) => {
+  //   session.send('subscribe:alreadysubscribed');
+  //   session.replaceDialog('Subscribe:Cancel');
+  // });
+
   const yesOrNoOptions = ['Sim', 'Não'];
   builder.Prompts.choice(session, 'subscribe:ask', yesOrNoOptions, {
     maxRetries: 0
@@ -29,6 +49,12 @@ library.dialog('Subscribe', [(session) => {
 }]);
 
 library.dialog('Cancel', [(session) => {
+  // FIXME: activate this somehow...
+  // isNotSubscribed(session, (session) => {
+  //   session.send('subscribe:notsubscribed');
+  //   session.replaceDialog('Subscribe:Subscribe');
+  // });
+
   const yesOrNoOptions = ['Sim', 'Não'];
   builder.Prompts.choice(session, 'subscribe:cancel', yesOrNoOptions, {
     maxRetries: 0

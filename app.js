@@ -1,6 +1,7 @@
 const restify = require('restify');
 const builder = require('botbuilder');
 const fs = require('fs');
+const Formatter = require('./utils/formatter');
 
 const pru = '**Pruuu!** ';
 const ruData = JSON.parse(fs.readFileSync('tests.json', 'utf8'));
@@ -32,27 +33,6 @@ bot.dialog('/', intents);
 /* ***********************************
 Bots Dialogs
 ************************************ */
-const formatter = {
-  menu: function(item) {
-    if(!item) {
-      return '';
-    }
-
-    let menu = '';
-    menu += '### ' + item.date + '\n\n';
-    menu += '- **Acompanhamento:** ' + item.basics + '\n\n';
-    menu += '- **Prato principal:** ' + item.main_dish + '\n\n';
-    menu += '- **Complemento:** ' + item.side_dish + '\n\n';
-    menu += '- **Salada:** ' + item.salad + '\n\n';
-    menu += '- **Sobremesa:** ' + item.dessert + '\n\n';
-
-    return menu;
-  }
-}
-
-/* ***********************************
-Bots Dialogs
-************************************ */
 
 bot.dialog('/menu/today', (session) => {
   // Create a Today Date object
@@ -71,7 +51,7 @@ bot.dialog('/menu/today', (session) => {
   }
 
   // Format the menu and send it
-  let menu = formatter.menu(item[0]);
+  let menu = Formatter.menu(item[0]);
 
   session.send('# Cardápio de Hoje!!!');
   session.send(menu);
@@ -99,7 +79,7 @@ bot.dialog('/menu/tomorrow', (session) => {
   }
 
   // Format the menu
-  let menu = formatter.menu(item[0]);
+  let menu = Formatter.menu(item[0]);
 
   session.send('# Cardápio de Amanhã!!!');
   session.send(menu);
@@ -117,7 +97,7 @@ bot.dialog('/menu/week', (session) => {
 
   // Fetch the menu data and send it
   ruData.menu.forEach((item) => {
-    const menu = formatter.menu(item);
+    const menu = Formatter.menu(item);
     session.send(menu);
   });
 

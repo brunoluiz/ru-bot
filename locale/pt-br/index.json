@@ -29,5 +29,13 @@
   "options:subscribe": "Alertas de Cardápio",
 
   "help": "Pruuu! O que você quer?",
-  "help:label": "Estou aqui para te dar informações do RU"
+  "help:label": "Estou aqui para te dar informações do RU",
+
+  "calendar:day:monday": "Segunda-feira",
+  "calendar:day:tuesday": "Terça-feira",
+  "calendar:day:wednesday": "Quarta-feira",
+  "calendar:day:thursday": "Quinta-feira",
+  "calendar:day:friday": "Sexta-feira",
+  "calendar:day:saturday": "Sábado",
+  "calendar:day:sunday": "Domingo",
 }

@@ -4,6 +4,8 @@ const library = new builder.Library('Welcome');
 
 let options = {};
 
+const url = process.env.URL+':'+process.env.PORT;
+
 library.dialog('Greeting', (session, results, next) => {
   options[I18n(session, 'options:subscribe')] = {id: 'Subscribe:CheckStatus'};
   options[I18n(session, 'options:todaymenu')] = {id: 'Menu:Today'};
@@ -13,7 +15,7 @@ library.dialog('Greeting', (session, results, next) => {
   let buttons = [
     builder.CardAction.dialogAction(session, 'Subscriptions', {}, 'options:subscribe'),
     builder.CardAction.dialogAction(session, 'TodaysMenu', {}, 'options:todaymenu'),
-    builder.CardAction.dialogAction(session, 'TomorrowsMenu', {}, 'options:tmrwmenu'),
+    // builder.CardAction.dialogAction(session, 'TomorrowsMenu', {}, 'options:tmrwmenu'),
     builder.CardAction.dialogAction(session, 'WeeksMenu', {}, 'options:weekmenu')
   ];
 
@@ -22,7 +24,7 @@ library.dialog('Greeting', (session, results, next) => {
     .subtitle('Estou aqui para te dar informações do RU')
     .text('')
     .images([
-        builder.CardImage.create(session, 'http://localhost:'+process.env.PORT+'/public/assets/images/pigeon.jpg')
+        builder.CardImage.create(session, url + '/public/assets/images/pigeon.jpg')
     ])
     .buttons(buttons);
 

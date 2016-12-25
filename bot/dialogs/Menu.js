@@ -7,7 +7,7 @@ const library = new builder.Library('Menu');
 
 const sendDayMenu = (session, offset) => {
   session.sendTyping();
-  
+
   // Create the date object, based on the specified object
   let today = new Date();
   today.setUTCHours(0, 0, 0, 0); // Reset the hours
@@ -37,9 +37,10 @@ library.dialog('Week', (session) => {
       const menu = Formatter.menu(session, item);
       session.send(menu);
     });
+
+    session.endDialog('pru');
   });
 
-  session.endDialog('pru');
 });
 
 module.exports = library;

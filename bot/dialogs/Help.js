@@ -1,23 +1,15 @@
+const I18n = require('../../helpers/I18n');
 const builder = require('botbuilder');
 const library = new builder.Library('Help');
 
-// FIXME: i18n
-const options = {
-  'Cardápio de hoje': {
-    id: 'Menu:Today'
-  },
-  'Cardápio de amanhã': {
-    id: 'Menu:Tomorrow'
-  },
-  'Cardápio da semana': {
-    id: 'Menu:Week'
-  },
-  'Notificações diárias': {
-    id: 'Subscribe:Subscribe'
-  }
-}
+let options = {};
 
 library.dialog('Options', [(session) => {
+  options[I18n(session, 'options:subscribe')] = {id: 'Subscribe:Subscribe'};
+  options[I18n(session, 'options:todaymenu')] = {id: 'Menu:Today'};
+  options[I18n(session, 'options:tmrwmenu')] = {id: 'Menu:Tomorrow'};
+  options[I18n(session, 'options:weekmenu')] = {id: 'Menu:Week'};
+
   builder.Prompts.choice(session, 'help', options, {
     maxRetries: 0
   });
@@ -32,4 +24,3 @@ library.dialog('Options', [(session) => {
 }]);
 
 module.exports = library;
-module.exports.options = options;

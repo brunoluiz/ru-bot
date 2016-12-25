@@ -22,5 +22,9 @@
   "subscribe:notsubscribed": "Você não está cadastrado para receber notificações!",
   "subscribe:alreadysubscribed": "Você já está cadastrado para receber notificações!",
 
-  "options:notvalid": "**Pruuu!** Opção inválida! Digite **AJUDA** para ver o menu novamente"
+  "options:notvalid": "**Pruuu!** Opção inválida! Digite **AJUDA** para ver o menu novamente",
+  "options:todaymenu": "Cardápio de hoje",
+  "options:tmrwmenu": "Cardápio de amanhã",
+  "options:weekmenu": "Cardápio da semana",
+  "options:subscribe": "Notificações diárias"
 }

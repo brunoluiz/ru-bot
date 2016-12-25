@@ -1,3 +1,5 @@
+const I18n = require ('./I18n')
+
 // Format the string as a markdown strong list item
 const label = (str) => (
   '- **' + str + ': **'
@@ -8,12 +10,12 @@ const Formatter = {
     if(!item) return '';
 
     const locale = {
-      title: session.localizer.gettext(session.preferredLocale(), 'menu:format:title'),
-      basics: session.localizer.gettext(session.preferredLocale(), 'menu:format:basics'),
-      main_dish: session.localizer.gettext(session.preferredLocale(), 'menu:format:main_dish'),
-      side_dish: session.localizer.gettext(session.preferredLocale(), 'menu:format:side_dish'),
-      salad: session.localizer.gettext(session.preferredLocale(), 'menu:format:salad'),
-      dessert: session.localizer.gettext(session.preferredLocale(), 'menu:format:dessert'),
+      title: I18n(session, 'menu:format:title'),
+      basics: I18n(session, 'menu:format:basics'),
+      main_dish: I18n(session, 'menu:format:main_dish'),
+      side_dish: I18n(session, 'menu:format:side_dish'),
+      salad: I18n(session, 'menu:format:salad'),
+      dessert: I18n(session, 'menu:format:dessert'),
     }
 
     // Format the date as DD/MM/YYYY

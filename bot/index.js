@@ -11,7 +11,7 @@ const connector = new builder.ChatConnector({
 const bot = new builder.UniversalBot(connector, {
   localizerSettings: {
     defaultLocale: process.env.LOCALE,
-    botLocalePath: './locale'
+    botLocalePath: process.env.LOCALE_PATH || './locale'
   }
 });
 

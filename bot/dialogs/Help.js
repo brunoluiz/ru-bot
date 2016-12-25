@@ -24,6 +24,7 @@ library.dialog('Options', [(session) => {
     session.replaceDialog(option.id);
   }
 
+  session.send('options:notvalid');
   session.endDialog();
 }]);
 

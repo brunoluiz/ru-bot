@@ -11,7 +11,7 @@
   "menu:format:salad": "Salada",
   "menu:format:dessert": "Sobremesa",
 
-  "help": "**Pruuu!** Não entendi o que você pediu... o que você quer?",
+  "help": "**Pruuu!** O que você quer?",
 
   "subscribe:ask": "Você deseja receber notificações diárias com o cardápio do RU?",
   "subscribe:confirmed": "Assinatura confirmada! Vou enviar notificações todos os dias pela manhã!",
@@ -22,5 +22,5 @@
   "subscribe:notsubscribed": "Você não está cadastrado para receber notificações!",
   "subscribe:alreadysubscribed": "Você já está cadastrado para receber notificações!",
 
-  "options:notvalid": "Opção inválida!"
+  "options:notvalid": "**Pruuu!** Opção inválida! Digite **AJUDA** para ver o menu novamente"
 }

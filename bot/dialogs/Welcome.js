@@ -16,7 +16,7 @@ const options = {
 
 library.dialog('Greeting', [(session) => {
   builder.Prompts.choice(session, 'greeting', options, {
-    maxRetries: 0
+    maxRetries: 0,
   });
 }, (session, results) => {
   if (results.response) {
@@ -24,6 +24,7 @@ library.dialog('Greeting', [(session) => {
     session.replaceDialog(option.id);
   }
 
+  session.send('options:notvalid');
   session.endDialog();
 }]);
 

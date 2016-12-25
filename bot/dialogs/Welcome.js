@@ -3,13 +3,13 @@ const library = new builder.Library('Welcome');
 
 // FIXME: i18n
 const options = {
-  'Quero o cardápio de hoje': {
+  'Cardápio de hoje': {
     id: 'Menu:Today'
   },
-  'Quero o cardápio de amanhã': {
+  'Cardápio de amanhã': {
     id: 'Menu:Tomorrow'
   },
-  'Quero o cardápio da semana': {
+  'Cardápio da semana': {
     id: 'Menu:Week'
   }
 }

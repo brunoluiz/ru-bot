@@ -1,10 +1,10 @@
-const mongoose = require('./config/mongoose');
 const restify = require('restify');
 const fs = require('fs');
 const Menu = require('./models/Menu');
 const Subscription = require('./models/Subscription');
 const bot = require('./bot').bot;
 const connector = require('./bot').connector;
+const mongoose = require('mongoose');
 
 require('dotenv').config();
 
@@ -26,7 +26,7 @@ server.get('/api/menu', (req, res, next) => {
   });
 });
 
-server.get('/api/update/:token', (req, res, next) => {
+server.get('/api/populate', (req, res, next) => {
 
   // FIXME: Replace this with the actual scrapper data
   let data = JSON.parse(fs.readFileSync('data.json', 'utf8'));
@@ -43,7 +43,7 @@ server.get('/api/update/:token', (req, res, next) => {
   res.send(200);
 });
 
-server.get('/api/notify/today', (req, res, next) => {
+server.get('/api/notify', (req, res, next) => {
   // Get all subscriptions and send the Today's Menu
   Subscription.find().exec(
     (err, subscriptions) =>

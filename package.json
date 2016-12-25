@@ -4,9 +4,11 @@
   "description": "Fetches the UFSC Restaurant Menu and serves it through a bot, using Microsoft BotFramework",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "web": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Bruno Luiz da Silva",
+  "author": "Bruno Luiz da Silva <contact@brunoluiz.net>",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.15.3",
@@ -14,5 +16,17 @@
     "dotenv": "^2.0.0",
     "mongoose": "^4.7.4",
     "restify": "^4.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brnluiz/pru-bot"
+  },
+  "keywords": [
+    "node",
+    "bot",
+    "botframework"
+  ]
+  "engines": {
+    "node": "7.3.0"
   }
 }

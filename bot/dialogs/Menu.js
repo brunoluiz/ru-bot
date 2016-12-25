@@ -33,8 +33,6 @@ library.dialog('Error', (session) => {
 });
 
 library.dialog('Week', (session) => {
-  // if (!ruData) session.replaceDialog('Menu:Error');
-
   session.send('menu:weektitle');
   session.sendTyping();
 

@@ -27,8 +27,12 @@ server.get('/api/menu', (req, res, next) => {
 });
 
 // TODO: Refactor all this scrapping method
-server.get('/api/populate', (req, res, next) =>
+server.post('/api/populate/:token', (req, res, next) =>
   axios.get('http://ru.ufsc.br/ru/').then((response) => {
+    if (req.params.token != process.env.SECTOKEN) {
+      return res.send(401);
+    }
+
     let items = new Array();
 
     // Loads the HTML to the Cherrio lib
@@ -76,7 +80,11 @@ server.get('/api/populate', (req, res, next) =>
   })
 );
 
-server.get('/api/notify', (req, res, next) => {
+server.post('/api/notify/:token', (req, res, next) => {
+  if (req.params.token != process.env.SECTOKEN) {
+    res.send(401);
+  }
+
   // Get all subscriptions and send the Today's Menu
   Subscription.find().exec(
     (err, subscriptions) =>

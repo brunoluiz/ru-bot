@@ -1,4 +1,5 @@
-const I18n = require ('./I18n')
+const I18n = require('./I18n');
+const moment = require('moment');
 
 // Format the string as a markdown strong list item
 const label = (str) => (
@@ -19,9 +20,7 @@ const Formatter = {
     }
 
     // Format the date as DD/MM/YYYY
-    let date = item.date.getUTCDate() + '/';
-    date += item.date.getUTCMonth() + '/';
-    date += item.date.getUTCFullYear();
+    let date = moment(item.date).locale('pt-br').utc().format('dddd');
 
     // Format the menu string as a Markdown string
     let menu = locale.title + date + '\n\n';

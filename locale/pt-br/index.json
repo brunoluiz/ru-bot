@@ -2,6 +2,7 @@
   "pru": "Pruuu! ",
   "greeting": "Olá, sou o PruBot! Posso lhe informar os cardápios e informações sobre o RU da UFSC e notificá-lo diariamente do cardápio do dia. Digite **AJUDA** para saber o que posso oferecer.",
   "whoami": "Pruuuu! Sou o PruBot",
+  "open": "Abrir",
 
   "menu:error": "Esse cardápio não está disponível",
   "menu:weektitle": "Cardápio da Semana",
@@ -29,13 +30,5 @@
   "options:subscribe": "Alertas de Cardápio",
 
   "help": "Pruuu! O que você quer?",
-  "help:label": "Estou aqui para te dar informações do RU",
-
-  "calendar:day:monday": "Segunda-feira",
-  "calendar:day:tuesday": "Terça-feira",
-  "calendar:day:wednesday": "Quarta-feira",
-  "calendar:day:thursday": "Quinta-feira",
-  "calendar:day:friday": "Sexta-feira",
-  "calendar:day:saturday": "Sábado",
-  "calendar:day:sunday": "Domingo",
+  "help:label": "Estou aqui para te dar informações do RU"
 }

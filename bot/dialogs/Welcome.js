@@ -4,7 +4,7 @@ const library = new builder.Library('Welcome');
 
 let options = {};
 
-const url = process.env.URL+':'+process.env.PORT;
+const url = process.env.URL || 'http://localhost:'+process.env.PORT;
 
 library.dialog('Greeting', (session, results, next) => {
   options[I18n(session, 'options:subscribe')] = {id: 'Subscribe:CheckStatus'};

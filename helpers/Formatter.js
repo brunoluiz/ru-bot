@@ -2,7 +2,7 @@ const I18n = require ('./I18n')
 
 // Format the string as a markdown strong list item
 const label = (str) => (
-  '- **' + str + ': **'
+  '- ' + str + ': '
 );
 
 const Formatter = {
@@ -24,12 +24,12 @@ const Formatter = {
     date += item.date.getUTCFullYear();
 
     // Format the menu string as a Markdown string
-    let menu = '### ' + locale.title + date + '\n\n';
-    menu += (item.basics) ? (label(locale.basics) + item.basics + '\n\n') : '';
-    menu += (item.main_dish) ? (label(locale.main_dish) + item.main_dish + '\n\n') : '';
-    menu += (item.side_dish) ? (label(locale.side_dish) + item.side_dish + '\n\n') : '';
-    menu += (item.salad) ? (label(locale.salad) + item.salad + '\n\n') : '';
-    menu += (item.dessert) ? (label(locale.dessert) + item.dessert + '\n\n') : '';
+    let menu = locale.title + date + '\n\n';
+    menu += (item.basics) ? (label(locale.basics) + item.basics + '\n') : '';
+    menu += (item.main_dish) ? (label(locale.main_dish) + item.main_dish + '\n') : '';
+    menu += (item.side_dish) ? (label(locale.side_dish) + item.side_dish + '\n') : '';
+    menu += (item.salad) ? (label(locale.salad) + item.salad + '\n') : '';
+    menu += (item.dessert) ? (label(locale.dessert) + item.dessert + '\n') : '';
 
     return menu;
   }

@@ -8,6 +8,17 @@ const library = new builder.Library('Menu');
 
 const url = process.env.URL || 'http://localhost:'+process.env.PORT;
 
+const cardImages = [
+    url + '/public/assets/images/food-1.jpg',
+    url + '/public/assets/images/food-2.jpg',
+    url + '/public/assets/images/food-3.jpg',
+    url + '/public/assets/images/food-4.jpg',
+    url + '/public/assets/images/food-5.jpg',
+    url + '/public/assets/images/food-6.jpg',
+    url + '/public/assets/images/food-7.jpg',
+    url + '/public/assets/images/food-8.jpg'
+];
+
 const getButtonLabel = (date) => {
   const dateMoment = moment(date).locale('pt-br').utc();
   const dateNumber = dateMoment.format('DD/M/YY');
@@ -50,7 +61,7 @@ library.dialog('Week', [(session) => {
 
     result.sort((a,b) =>
       moment(a.date).isAfter(moment(a.b)) ? -1 : 1
-    ).forEach((item) => {
+    ).forEach((item, index) => {
       const payload  = JSON.stringify({date: item.date});
 
       const date = moment(item.date).locale('pt-br').utc();
@@ -63,7 +74,7 @@ library.dialog('Week', [(session) => {
       const card = new builder.ThumbnailCard(session)
         .title(title)
         .images([
-            builder.CardImage.create(session, url + '/public/assets/images/hero_pigeon.jpg')
+          builder.CardImage.create(session, cardImages[index])
         ])
         .buttons([action])
         .tap(action);

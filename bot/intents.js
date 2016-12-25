@@ -7,8 +7,9 @@ const intents = new builder.IntentDialog();
 intents.matches(/^hoje/i, (session) => session.beginDialog('Menu:Today'));
 intents.matches(/^amanhã/i, (session) => session.beginDialog('Menu:Tomorrow'));
 intents.matches(/^semana/i, (session) => session.beginDialog('Menu:Week'));
-intents.matches(/^assina/i, (session) => session.beginDialog('Subscribe:Subscribe'));
-intents.matches(/^cancel/i, (session) => session.beginDialog('Subscribe:Cancel'));
+intents.matches(/^assina/i, (session) => session.beginDialog('Subscribe:CheckStatus'));
+intents.matches(/^notifica/i, (session) => session.beginDialog('Subscribe:CheckStatus'));
+intents.matches(/^cancel/i, (session) => session.beginDialog('Subscribe:CheckStatus'));
 
 // Default action, when no match is found
 intents.onDefault((session, args, next) => session.beginDialog('Help:Options'));

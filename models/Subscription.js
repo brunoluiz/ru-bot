@@ -6,6 +6,13 @@ let subscriptionSchema = mongoose.Schema({
   createdAt: {type: Date, required: true, default: Date.now}
 });
 
+subscriptionSchema.statics.isSubscribed = (session, callback) => (
+  mongoose.model('Menu').findOne({
+      user: session.message.address.user
+    }, (err, result) => callback(result)
+  )
+);
+
 let subscription = mongoose.model('Subscription', subscriptionSchema);
 
 module.exports = subscription;

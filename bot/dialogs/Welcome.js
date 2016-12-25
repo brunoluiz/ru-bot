@@ -14,12 +14,13 @@ library.dialog('Greeting', [(session) => {
     maxRetries: 0
   });
 }, (session, results, next) => {
-  if (results.response) {
-    const option = options[results.response.entity];
-    session.replaceDialog(option.id);
-  } else {
-    session.endDialog('options:notvalid');
+  if (!results.response) {
+    return session.endConversation('options:notvalid');
   }
+
+  const option = options[results.response.entity];
+  session.sendTyping();
+  session.replaceDialog(option.id);
 }]);
 
 module.exports = library;

@@ -33,8 +33,7 @@ library.dialog('Subscribe', [(session) => {
     if (option == 'Sim') return next();
   }
 
-  session.send('subscribe:notconfirmed');
-  session.endDialog();
+  session.endDialog('subscribe:notconfirmed');
 }, (session, results, next) => {
   session.sendTyping();
 
@@ -43,8 +42,7 @@ library.dialog('Subscribe', [(session) => {
     address: session.message.address
   });
 
-  session.send('subscribe:confirmed');
-  session.endDialog();
+  session.endDialog('subscribe:confirmed');
 }]);
 
 library.dialog('Cancel', [(session) => {
@@ -64,8 +62,7 @@ library.dialog('Cancel', [(session) => {
     if (option == 'Sim') return next();
   }
 
-  session.send('subscribe:notcanceled');
-  session.endDialog();
+  session.endDialog('subscribe:notcanceled');
 }, (session, results, next) => {
   session.sendTyping();
 
@@ -73,8 +70,7 @@ library.dialog('Cancel', [(session) => {
     user: session.message.address.user
   }, (err) => console.log(err));
 
-  session.send('subscribe:canceled');
-  session.endDialog();
+  session.endDialog('subscribe:canceled');
 }]);
 
 

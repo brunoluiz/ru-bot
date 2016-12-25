@@ -6,6 +6,8 @@ const Menu = require('../../models/Menu');
 const library = new builder.Library('Menu');
 
 const sendDayMenu = (session, offset) => {
+  session.sendTyping();
+  
   // Create the date object, based on the specified object
   let today = new Date();
   today.setUTCHours(0, 0, 0, 0); // Reset the hours
@@ -13,24 +15,17 @@ const sendDayMenu = (session, offset) => {
 
   // Get the specified date menu item
   Menu.getDay(offsetDate, (err, result) => {
-    if (err || !result) session.replaceDialog('Menu:Error');
+    if (err || !result) session.endDialog('menu:error');
 
     // Format the menu and send it
     let menu = Formatter.menu(session, result);
-    session.send(menu);
-    session.send('pru');
-    session.endDialog();
+    session.endDialog(menu);
   });
 }
 
 library.dialog('Today', (session) => sendDayMenu(session, 0));
 
 library.dialog('Tomorrow', (session) => sendDayMenu(session, 1));
-
-library.dialog('Error', (session) => {
-  session.send('menu:error');
-  session.endDialog();
-});
 
 library.dialog('Week', (session) => {
   session.send('menu:weektitle');
@@ -44,8 +39,7 @@ library.dialog('Week', (session) => {
     });
   });
 
-  session.send('pru');
-  session.endDialog();
+  session.endDialog('pru');
 });
 
 module.exports = library;

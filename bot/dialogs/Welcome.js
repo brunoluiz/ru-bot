@@ -18,8 +18,7 @@ library.dialog('Greeting', [(session) => {
     const option = options[results.response.entity];
     session.replaceDialog(option.id);
   } else {
-    session.send('options:notvalid');
-    session.endDialog();
+    session.endDialog('options:notvalid');
   }
 }]);
 

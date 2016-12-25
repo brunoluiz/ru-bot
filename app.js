@@ -5,6 +5,8 @@ const Subscription = require('./models/Subscription');
 const bot = require('./bot').bot;
 const connector = require('./bot').connector;
 const mongoose = require('mongoose');
+const axios = require('axios');
+const cheerio = require('cheerio');
 
 // Connect to the MongoDB
 mongoose.connect(process.env.MONGODB_URI);
@@ -24,22 +26,55 @@ server.get('/api/menu', (req, res, next) => {
   });
 });
 
-server.get('/api/populate', (req, res, next) => {
+// TODO: Refactor all this scrapping method
+server.get('/api/populate', (req, res, next) =>
+  axios.get('http://ru.ufsc.br/ru/').then((response) => {
+    let items = new Array();
 
-  // FIXME: Replace this with the actual scrapper data
-  let data = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+    // Loads the HTML to the Cherrio lib
+    let $ = cheerio.load(response.data);
 
-  // Add a Date object to the item
-  let menu = data.menu.map((item) => {
-    item.date = new Date(item.date);
-    return item;
-  });
+    // First things first: define the start and end date of this menu
+    let dateEl = $('p:nth-child(1) > span:first-child').text();
+    let dateRange = dateEl.match(/([1-9][0-9]*)\/([1-9][0-9]*)/g);
+    let startDateStr = dateRange[0];
+    let endDateStr = dateRange[1];
+    let year = $('li.last-update').text().match(/[0-9]{4}/)[0];
 
-  // Batch insert all the menu items in the Database
-  Menu.collection.insert(menu);
+    // Get the start date Date object
+    let dateInfo = startDateStr.split('/');
+    let month = dateInfo[1];
+    let day = dateInfo[0];
+    let startDate = new Date(year + '-' + month + '-' + day);
 
-  res.send(200);
-});
+    // Get the menu's table and iterate over it
+    let rows = $('table:nth-child(4) > tbody > tr').toArray();
+    rows.forEach((row, index) => {
+      if(index == 0) return;
+
+      // Get all the columns
+      cols = $(row).find('td');
+
+      // Get the right date
+      let date = startDate.setDate(startDate.getDate() + 1);
+
+      // Push the item
+      items.push({
+        date: new Date(date),
+        basics: $(cols[1]).text().trim() + '/ ' + $(cols[2]).text().trim(),
+        main_dish: $(cols[3]).text().trim(),
+        side_dish: $(cols[4]).text().trim(),
+        salad: $(cols[5]).text().trim(),
+        dessert: $(cols[6]).text().trim(),
+      });
+    });
+
+    // Batch insert all the menu items in the Database
+    Menu.collection.insert(items);
+
+    res.send(200);
+  })
+);
 
 server.get('/api/notify', (req, res, next) => {
   // Get all subscriptions and send the Today's Menu

@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "botbuilder": "^3.4.4",
+    "cheerio": "^0.22.0",
     "dotenv": "^2.0.0",
     "mongoose": "^4.7.4",
     "restify": "^4.3.0"

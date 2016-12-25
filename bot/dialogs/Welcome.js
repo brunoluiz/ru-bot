@@ -4,23 +4,30 @@ const library = new builder.Library('Welcome');
 
 let options = {};
 
-library.dialog('Greeting', [(session) => {
+library.dialog('Greeting', (session, results, next) => {
   options[I18n(session, 'options:subscribe')] = {id: 'Subscribe:CheckStatus'};
   options[I18n(session, 'options:todaymenu')] = {id: 'Menu:Today'};
   options[I18n(session, 'options:tmrwmenu')] = {id: 'Menu:Tomorrow'};
   options[I18n(session, 'options:weekmenu')] = {id: 'Menu:Week'};
 
-  builder.Prompts.choice(session, 'greeting', options, {
-    maxRetries: 0
-  });
-}, (session, results, next) => {
-  if (!results.response) {
-    return session.endConversation('options:notvalid');
-  }
+  let buttons = [
+    builder.CardAction.dialogAction(session, 'Subscriptions', {}, 'options:subscribe'),
+    builder.CardAction.dialogAction(session, 'TodaysMenu', {}, 'options:todaymenu'),
+    builder.CardAction.dialogAction(session, 'TomorrowsMenu', {}, 'options:tmrwmenu'),
+    builder.CardAction.dialogAction(session, 'WeeksMenu', {}, 'options:weekmenu')
+  ];
 
-  const option = options[results.response.entity];
-  session.sendTyping();
-  session.replaceDialog(option.id);
-}]);
+  const card = new builder.HeroCard(session)
+    .title('Pruuuu sou o PruBot')
+    .subtitle('Estou aqui para te dar informações do RU')
+    .text('')
+    .images([
+        builder.CardImage.create(session, 'http://localhost:'+process.env.PORT+'/public/assets/images/pigeon.jpg')
+    ])
+    .buttons(buttons);
+
+  let msg = new builder.Message(session).addAttachment(card);
+  session.send(msg);
+});
 
 module.exports = library;

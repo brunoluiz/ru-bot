@@ -1,5 +1,4 @@
 const restify = require('restify');
-const fs = require('fs');
 const Menu = require('./models/Menu');
 const Subscription = require('./models/Subscription');
 const bot = require('./bot').bot;
@@ -94,3 +93,7 @@ server.post('/api/notify/:token', (req, res, next) => {
 
   res.send(200);
 });
+
+server.get(/\/public\/?.*/, restify.serveStatic({
+    directory: __dirname
+}));

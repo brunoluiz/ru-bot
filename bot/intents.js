@@ -12,6 +12,6 @@ intents.matches(/^notifica/i, (session) => session.beginDialog('Subscribe:CheckS
 intents.matches(/^cancel/i, (session) => session.beginDialog('Subscribe:CheckStatus'));
 
 // Default action, when no match is found
-intents.onDefault((session, args, next) => session.beginDialog('Help:Options'));
+intents.onDefault((session, args, next) => session.beginDialog('Welcome:Greeting'));
 
 module.exports = intents;

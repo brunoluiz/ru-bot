@@ -24,6 +24,11 @@ bot.library(require('./dialogs/Welcome'));
 // Init the entry point with the Intents config
 bot.dialog('/', intents);
 
+bot.beginDialogAction('Subscriptions', 'Subscribe:CheckStatus');
+bot.beginDialogAction('TodaysMenu', 'Menu:Today');
+bot.beginDialogAction('TomorrowsMenu', 'Menu:Tomorrow');
+bot.beginDialogAction('WeeksMenu', 'Menu:Week');
+
 // Shows a greeting message for new users
 bot.on('conversationUpdate', (message) => {
   if (message.membersAdded) {

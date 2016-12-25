@@ -7,7 +7,7 @@ let subscriptionSchema = mongoose.Schema({
 });
 
 subscriptionSchema.statics.isSubscribed = (session, callback) => (
-  mongoose.model('Menu').findOne({
+  mongoose.model('Subscription').findOne({
       user: session.message.address.user
     }, (err, result) => callback(result)
   )

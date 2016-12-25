@@ -16,18 +16,19 @@ const isNotSubscribed = (session, callback) => Subscription.findOne({
   }
 );
 
-library.dialog('Subscribe', [(session) => {
-  // TODO: activate this somehow...
-  // isSubscribed(session, (session) => {
-  //   session.send('subscribe:alreadysubscribed');
-  //   session.replaceDialog('Subscribe:Cancel');
-  // });
+library.dialog('Subscribe', [
+(session) => Subscription.findOne({ user: session.message.address.user },
+  (err, result) => {
+  if (result) {
+    session.send('subscribe:alreadysubscribed');
+    return session.replaceDialog('Subscribe:Cancel');
+  }
 
   const yesOrNoOptions = ['Sim', 'Não'];
   builder.Prompts.choice(session, 'subscribe:ask', yesOrNoOptions, {
     maxRetries: 0
   });
-}, (session, results, next) => {
+}), (session, results, next) => {
   if (results.response) {
     const option = results.response.entity;
     if (option == 'Sim') return next();
@@ -45,18 +46,19 @@ library.dialog('Subscribe', [(session) => {
   session.endDialog('subscribe:confirmed');
 }]);
 
-library.dialog('Cancel', [(session) => {
-  // TODO: activate this somehow...
-  // isNotSubscribed(session, (session) => {
-  //   session.send('subscribe:notsubscribed');
-  //   session.replaceDialog('Subscribe:Subscribe');
-  // });
+library.dialog('Cancel', [
+(session) => Subscription.findOne({ user: session.message.address.user },
+  (err, result) => {
+  if (!result) {
+    session.send('subscribe:notsubscribed');
+    return session.replaceDialog('Subscribe:Subscribe');
+  }
 
   const yesOrNoOptions = ['Sim', 'Não'];
   builder.Prompts.choice(session, 'subscribe:cancel', yesOrNoOptions, {
     maxRetries: 0
   });
-}, (session, results, next) => {
+}), (session, results, next) => {
   if (results.response) {
     const option = results.response.entity;
     if (option == 'Sim') return next();

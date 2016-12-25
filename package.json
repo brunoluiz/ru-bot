@@ -25,7 +25,7 @@
     "node",
     "bot",
     "botframework"
-  ]
+  ],
   "engines": {
     "node": "7.3.0"
   }

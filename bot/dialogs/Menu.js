@@ -1,6 +1,6 @@
 const builder = require('botbuilder');
 const fs = require('fs');
-const Formatter = require('../../helpers/formatter');
+const Formatter = require('../../helpers/Formatter');
 const Menu = require('../../models/Menu');
 
 const library = new builder.Library('Menu');

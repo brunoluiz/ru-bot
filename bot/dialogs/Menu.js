@@ -1,6 +1,7 @@
 const builder = require('botbuilder');
 const fs = require('fs');
 const Formatter = require('../../helpers/Formatter');
+const Utils = require('../../helpers/Utils');
 const moment = require('moment');
 const Menu = require('../../models/Menu');
 
@@ -74,7 +75,7 @@ library.dialog('Week', [(session) => {
       const card = new builder.ThumbnailCard(session)
         .title(title)
         .images([
-          builder.CardImage.create(session, cardImages[index])
+          builder.CardImage.create(session, Utils.shuffle(cardImages)[index])
         ])
         .buttons([action])
         .tap(action);
@@ -86,6 +87,7 @@ library.dialog('Week', [(session) => {
         .textFormat(builder.TextFormat.xml)
         .attachmentLayout(builder.AttachmentLayout.carousel)
         .attachments(cards);
+
     session.send(carousel);
   });
 

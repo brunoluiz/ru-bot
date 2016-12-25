@@ -28,7 +28,6 @@ library.dialog('Today', (session) => sendDayMenu(session, 0));
 library.dialog('Tomorrow', (session) => sendDayMenu(session, 1));
 
 library.dialog('Week', (session) => {
-  session.send('menu:weektitle');
   session.sendTyping();
 
   // Fetch the menu data and send it

@@ -20,11 +20,10 @@ library.dialog('Greeting', (session, results, next) => {
   ];
 
   const card = new builder.HeroCard(session)
-    .title('Pruuuu sou o PruBot')
-    .subtitle('Estou aqui para te dar informações do RU')
-    .text('')
+    .title('whoami')
+    .subtitle('help:label')
     .images([
-        builder.CardImage.create(session, url + '/public/assets/images/pigeon.jpg')
+        builder.CardImage.create(session, url + '/public/assets/images/hero_pigeon.jpg')
     ])
     .buttons(buttons);
 

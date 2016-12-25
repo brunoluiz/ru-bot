@@ -52,10 +52,16 @@ library.dialog('Week', [(session) => {
       moment(a.date).isAfter(moment(a.b)) ? -1 : 1
     ).forEach((item) => {
       const payload  = JSON.stringify({date: item.date});
-      const btnLabel = getButtonLabel(item.date);
-      const action   = builder.CardAction.dialogAction(session, 'Menu', payload, btnLabel);
+
+      const date = moment(item.date).locale('pt-br').utc();
+      const dateNumber = date.format('DD/M/YY');
+      const dateString = date.format('dddd');
+      const title = dateString + ' (' + dateNumber + ')';
+
+      const action   = builder.CardAction.dialogAction(session, 'Menu', payload, dateString);
 
       const card = new builder.ThumbnailCard(session)
+        .title(title)
         .images([
             builder.CardImage.create(session, url + '/public/assets/images/hero_pigeon.jpg')
         ])

@@ -6,10 +6,8 @@ const bot = require('./bot').bot;
 const connector = require('./bot').connector;
 const mongoose = require('mongoose');
 
-require('dotenv').config();
-
 // Connect to the MongoDB
-mongoose.connect(process.env.MONGO_URL);
+mongoose.connect(process.env.MONGODB_URI);
 
 // Setup Restify Server
 const server = restify.createServer();

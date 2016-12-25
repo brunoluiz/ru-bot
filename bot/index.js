@@ -1,6 +1,5 @@
 const builder = require('botbuilder');
 const intents = require('./intents');
-require('dotenv').config();
 
 // Create the connector (needs to be configurated on the MS Platform)
 const connector = new builder.ChatConnector({

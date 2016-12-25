@@ -17,7 +17,7 @@ const isNotSubscribed = (session, callback) => Subscription.findOne({
 );
 
 library.dialog('Subscribe', [(session) => {
-  // FIXME: activate this somehow...
+  // TODO: activate this somehow...
   // isSubscribed(session, (session) => {
   //   session.send('subscribe:alreadysubscribed');
   //   session.replaceDialog('Subscribe:Cancel');
@@ -28,7 +28,6 @@ library.dialog('Subscribe', [(session) => {
     maxRetries: 0
   });
 }, (session, results, next) => {
-
   if (results.response) {
     const option = results.response.entity;
     if (option == 'Sim') return next();
@@ -49,7 +48,7 @@ library.dialog('Subscribe', [(session) => {
 }]);
 
 library.dialog('Cancel', [(session) => {
-  // FIXME: activate this somehow...
+  // TODO: activate this somehow...
   // isNotSubscribed(session, (session) => {
   //   session.send('subscribe:notsubscribed');
   //   session.replaceDialog('Subscribe:Subscribe');
@@ -60,7 +59,6 @@ library.dialog('Cancel', [(session) => {
     maxRetries: 0
   });
 }, (session, results, next) => {
-
   if (results.response) {
     const option = results.response.entity;
     if (option == 'Sim') return next();

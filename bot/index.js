@@ -18,7 +18,7 @@ const bot = new builder.UniversalBot(connector, {
 // Load the libraries (dialogs)
 bot.library(require('./dialogs/Menu'));
 bot.library(require('./dialogs/Subscription'));
-bot.library(require('./dialogs/Welcome'));
+bot.library(require('./dialogs/Main'));
 bot.library(require('./dialogs/Info'));
 
 // Init the entry point with the Intents config
@@ -29,13 +29,13 @@ bot.beginDialogAction('TodaysMenu', 'Menu:Today');
 bot.beginDialogAction('TomorrowsMenu', 'Menu:Tomorrow');
 bot.beginDialogAction('WeeksMenu', 'Menu:Menu');
 bot.beginDialogAction('Menu', 'Menu:Day');
-bot.beginDialogAction('Help', 'Welcome:Welcome');
+bot.beginDialogAction('Help', 'Main:Main');
 bot.beginDialogAction('Info', 'Info:Info');
 
 // Shows a greeting message for new users
 bot.on('conversationUpdate', (message) => {
   if (message.membersAdded) {
-    bot.beginDialog(message.address, 'Welcome:Greeting');
+    bot.beginDialog(message.address, 'Main:Greeting');
   }
 });
 

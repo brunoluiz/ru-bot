@@ -23,6 +23,6 @@ intents.matches(/Ver Cardápio/i, (session) => session.beginDialog('Menu:Menu'))
 intents.matches(/Alertas diários/i, (session) => session.beginDialog('Subscription:Subscription'));
 
 // Default action, when no match is found
-intents.onDefault((session, args, next) => session.beginDialog('Welcome:Welcome'));
+intents.onDefault((session, args, next) => session.beginDialog('Main:Main'));
 
 module.exports = intents;

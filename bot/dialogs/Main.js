@@ -1,12 +1,12 @@
 const I18n = require('../../helpers/I18n');
 const builder = require('botbuilder');
-const library = new builder.Library('Welcome');
+const library = new builder.Library('Main');
 
 let options = {};
 
 const url = process.env.URL || 'http://localhost:'+process.env.PORT;
 
-library.dialog('Welcome', (session, results, next) => {
+library.dialog('Main', (session, results, next) => {
   options[I18n(session, 'options:subscribe')] = {id: 'Subscription:Subscription'};
   options[I18n(session, 'options:todaymenu')] = {id: 'Menu:Today'};
   options[I18n(session, 'options:tmrwmenu')] = {id: 'Menu:Tomorrow'};
@@ -33,7 +33,7 @@ library.dialog('Welcome', (session, results, next) => {
 });
 
 library.dialog('Greeting', (session, results, next) => {
-  session.replaceDialog('Welcome:Welcome');
+  session.replaceDialog('Main:Main');
   session.send('greeting');
 });
 

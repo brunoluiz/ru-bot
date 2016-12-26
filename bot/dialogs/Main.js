@@ -21,7 +21,7 @@ library.dialog('Main', (session, results, next) => {
   ];
 
   const card = new builder.HeroCard(session)
-    .title('whoami')
+    .title('greeting:whoami')
     .text('help:label')
     .images([
         builder.CardImage.create(session, url + '/public/assets/images/hero_pigeon.jpg')
@@ -34,7 +34,10 @@ library.dialog('Main', (session, results, next) => {
 
 library.dialog('Greeting', (session, results, next) => {
   session.replaceDialog('Main:Main');
-  session.send('greeting');
+  session.sendTyping();
+  session.send('greeting:whoami');
+  session.send('greeting:purpose');
+  session.send('greeting:firstinteraction');
 });
 
 module.exports = library;

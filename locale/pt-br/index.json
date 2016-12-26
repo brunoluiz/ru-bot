@@ -1,7 +1,9 @@
 {
   "pru": "Pruuu! ",
-  "greeting": "Olá, sou o pRUBot! Posso lhe informar os cardápios e informações do RU da UFSC e, além disso, notificá-lo diariamente do cardápio do dia. Digite **AJUDA** para ver minhas opções.",
-  "whoami": "Pruuuu! Sou o pRUBot",
+  "greeting:whoami": "Pruuuu! Sou o pRUBot",
+  "greeting:purpose": "Posso lhe informar os cardápios e informações do RU da UFSC e, além disso, notificá-lo diariamente do cardápio do dia.",
+  "greeting:firstinteraction": "Digite AJUDA ou clique no botão no canto inferior esquerdo para ver o que ofereço",
+
   "open": "Abrir",
   "view": "Ver",
   "yes": "Sim",

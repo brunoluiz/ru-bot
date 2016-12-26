@@ -29,6 +29,7 @@ bot.beginDialogAction('TodaysMenu', 'Menu:Today');
 bot.beginDialogAction('TomorrowsMenu', 'Menu:Tomorrow');
 bot.beginDialogAction('WeeksMenu', 'Menu:Week');
 bot.beginDialogAction('Menu', 'Menu:Day');
+bot.beginDialogAction('Help', 'Greeting');
 
 // Shows a greeting message for new users
 bot.on('conversationUpdate', (message) => {

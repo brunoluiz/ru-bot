@@ -30,7 +30,7 @@ const getButtonLabel = (date) => {
 // Get the specified date menu item
 const getMenu = (session, date) => (
   Menu.getDay(date, (err, result) => {
-    if (err || !result) session.endDialog('menu:error');
+    if (err || !result) return session.endDialog('menu:error');
 
     session.sendTyping();
 

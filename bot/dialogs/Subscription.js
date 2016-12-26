@@ -6,10 +6,10 @@ const Subscription = require('../../models/Subscription');
 library.dialog('Subscription',
 (session) => Subscription.isSubscribed(session, (result) => {
   if (result) {
-    session.send('subscribe:alreadysubscribed');
+    session.send('subscription:alreadysubscribed');
     return session.replaceDialog('Subscription:Cancel');
   } else {
-    session.send('subscribe:notsubscribed');
+    session.send('subscription:notsubscribed');
     return session.replaceDialog('Subscription:Subscribe');
   }
 }));
@@ -17,8 +17,7 @@ library.dialog('Subscription',
 // SUBSCRIBE DIALOG
 
 library.dialog('Subscribe', [(session) => {
-  const yesOrNoOptions = ['Sim', 'Não'];
-  builder.Prompts.choice(session, 'subscribe:ask', yesOrNoOptions, {
+  builder.Prompts.choice(session, 'subscription:prompt', ['yes', 'no'], {
     maxRetries: 0
   });
 }, (session, results, next) => {
@@ -27,7 +26,7 @@ library.dialog('Subscribe', [(session) => {
     if (option == 'Sim') return next();
   }
 
-  session.endDialog('subscribe:notconfirmed');
+  session.endDialog('subscription:notconfirmed');
 }, (session, results, next) => {
   session.sendTyping();
 
@@ -36,13 +35,13 @@ library.dialog('Subscribe', [(session) => {
     address: session.message.address
   });
 
-  session.endDialog('subscribe:confirmed');
+  session.endDialog('subscription:confirmed');
 }]);
 
 // CANCEL DIALOG
 
 library.dialog('Cancel', [(session) => {
-  builder.Prompts.choice(session, 'subscribe:cancel', ['yes', 'no'], {
+  builder.Prompts.choice(session, 'subscription:cancel', ['yes', 'no'], {
     maxRetries: 0
   });
 }, (session, results, next) => {
@@ -51,7 +50,7 @@ library.dialog('Cancel', [(session) => {
     if (option == 'yes') return next();
   }
 
-  session.endDialog('subscribe:notcanceled');
+  session.endDialog('subscription:notcanceled');
 }, (session, results, next) => {
   session.sendTyping();
 
@@ -59,7 +58,7 @@ library.dialog('Cancel', [(session) => {
     user: session.message.address.user
   }, (err) => console.log(err));
 
-  session.endDialog('subscribe:canceled');
+  session.endDialog('subscription:canceled');
 }]);
 
 module.exports = library;

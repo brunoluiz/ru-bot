@@ -6,17 +6,17 @@ let options = {};
 
 const url = process.env.URL || 'http://localhost:'+process.env.PORT;
 
-library.dialog('Greeting', (session, results, next) => {
+library.dialog('Welcome', (session, results, next) => {
   options[I18n(session, 'options:subscribe')] = {id: 'Subscription:Subscription'};
   options[I18n(session, 'options:todaymenu')] = {id: 'Menu:Today'};
   options[I18n(session, 'options:tmrwmenu')] = {id: 'Menu:Tomorrow'};
-  options[I18n(session, 'options:weekmenu')] = {id: 'Menu:Week'};
+  options[I18n(session, 'options:weekmenu')] = {id: 'Menu:Menu'};
 
   let buttons = [
     builder.CardAction.dialogAction(session, 'Subscriptions', {}, 'options:subscribe'),
     // builder.CardAction.dialogAction(session, 'TodaysMenu', {}, 'options:todaymenu'),
     // builder.CardAction.dialogAction(session, 'TomorrowsMenu', {}, 'options:tmrwmenu'),
-    builder.CardAction.dialogAction(session, 'WeeksMenu', {}, 'options:weekmenu'),
+    builder.CardAction.dialogAction(session, 'WeeksMenu', {}, 'options:menu'),
     builder.CardAction.dialogAction(session, 'Info', {}, 'options:info')
   ];
 

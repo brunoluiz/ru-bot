@@ -7,6 +7,7 @@
   "yes": "Sim",
   "no": "Não",
 
+  "menu": "Cardápio",
   "menu:error": "Esse cardápio não está disponível",
   "menu:weektitle": "Cardápio da Semana",
   "menu:format:title": "Cardápio de ",
@@ -17,20 +18,22 @@
   "menu:format:dessert": "Sobremesa",
 
 
-  "subscribe:ask": "Você deseja receber notificações diárias com o cardápio do RU?",
-  "subscribe:confirmed": "Assinatura confirmada! Vou enviar notificações todos os dias pela manhã!",
-  "subscribe:notconfirmed": "Assinatura não realizada",
-  "subscribe:cancel": "Você deseja cancelar sua assinatura diária?",
-  "subscribe:canceled": "Assinatura cancelada! Caso desejar, você pode re-assinar a qualquer momento ;)",
-  "subscribe:notcanceled": "Assinatura não cancelada!",
-  "subscribe:notsubscribed": "Você não está cadastrado para receber notificações!",
-  "subscribe:alreadysubscribed": "Você já está cadastrado para receber notificações!",
+  "subscription": "Assinatura",
+  "subscription:prompt": "Você deseja receber notificações diárias com o cardápio do RU?",
+  "subscription:confirmed": "Assinatura confirmada! Vou enviar notificações todos os dias pela manhã!",
+  "subscription:notconfirmed": "Assinatura não realizada",
+  "subscription:cancel": "Você deseja cancelar sua assinatura diária?",
+  "subscription:canceled": "Assinatura cancelada! Caso desejar, você pode re-assinar a qualquer momento ;)",
+  "subscription:notcanceled": "Assinatura não cancelada!",
+  "subscription:notsubscribed": "Você não está cadastrado para receber notificações!",
+  "subscription:alreadysubscribed": "Você já está cadastrado para receber notificações!",
 
   "options:notvalid": "Pruuu! Opção inválida! Digite **AJUDA** para ver o menu novamente",
   "options:todaymenu": "Cardápio de hoje",
   "options:tmrwmenu": "Cardápio de amanhã",
   "options:weekmenu": "Cardápio da semana",
   "options:subscribe": "Alertas de Cardápio",
+  "options:menu": "Ver Cardápio",
   "options:info": "Sobre e Infos",
   "options:info:subscribe": "Alertas de Cardápio",
 

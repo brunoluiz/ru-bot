@@ -4,11 +4,11 @@ const library = new builder.Library('Help');
 
 let options = {};
 
-library.dialog('Options', [(session) => {
+library.dialog('Help', [(session) => {
   options[I18n(session, 'options:subscribe')] = {id: 'Subscription:Subscription'};
   options[I18n(session, 'options:todaymenu')] = {id: 'Menu:Today'};
   options[I18n(session, 'options:tmrwmenu')] = {id: 'Menu:Tomorrow'};
-  options[I18n(session, 'options:weekmenu')] = {id: 'Menu:Week'};
+  options[I18n(session, 'options:weekmenu')] = {id: 'Menu:Menu'};
 
   builder.Prompts.choice(session, 'help', options, {
     maxRetries: 0

@@ -54,7 +54,7 @@ library.dialog('Day', (session, results, next) => {
   return getMenu(session, date);
 });
 
-library.dialog('Week', [(session) => {
+library.dialog('Menu', [(session) => {
   session.sendTyping();
 
   // Fetch the menu data and send it

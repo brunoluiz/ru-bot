@@ -28,15 +28,15 @@ bot.dialog('/', intents);
 bot.beginDialogAction('Subscriptions', 'Subscription:Subscription');
 bot.beginDialogAction('TodaysMenu', 'Menu:Today');
 bot.beginDialogAction('TomorrowsMenu', 'Menu:Tomorrow');
-bot.beginDialogAction('WeeksMenu', 'Menu:Week');
+bot.beginDialogAction('WeeksMenu', 'Menu:Menu');
 bot.beginDialogAction('Menu', 'Menu:Day');
-bot.beginDialogAction('Help', 'Greeting');
+bot.beginDialogAction('Help', 'Welcome:Welcome');
 bot.beginDialogAction('Info', 'Info:Info');
 
 // Shows a greeting message for new users
 bot.on('conversationUpdate', (message) => {
   if (message.membersAdded) {
-    bot.beginDialog(message.address, 'Welcome:Greeting');
+    bot.beginDialog(message.address, 'Welcome:Welcome');
   }
 });
 

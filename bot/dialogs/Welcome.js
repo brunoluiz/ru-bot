@@ -22,7 +22,7 @@ library.dialog('Welcome', (session, results, next) => {
 
   const card = new builder.HeroCard(session)
     .title('whoami')
-    .subtitle('help:label')
+    .text('help:label')
     .images([
         builder.CardImage.create(session, url + '/public/assets/images/hero_pigeon.jpg')
     ])

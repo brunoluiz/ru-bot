@@ -1,14 +1,14 @@
 {
   "pru": "Pruuu! ",
-  "greeting": "Olá, sou o PruBot! Posso lhe informar os cardápios e informações do RU da UFSC e, além disso, notificá-lo diariamente do cardápio do dia. Digite **AJUDA** para ver minhas opções.",
-  "whoami": "Pruuuu! Sou o PruBot",
+  "greeting": "Olá, sou o pRUBot! Posso lhe informar os cardápios e informações do RU da UFSC e, além disso, notificá-lo diariamente do cardápio do dia. Digite **AJUDA** para ver minhas opções.",
+  "whoami": "Pruuuu! Sou o pRUBot",
   "open": "Abrir",
   "view": "Ver",
   "yes": "Sim",
   "no": "Não",
 
   "help": "Pruuu! No que posso ajudar?",
-  "help:label": "Estou aqui para te dar informações do RU e notificá-lo dos cardápios diários (por @brunoluiz)",
+  "help:label": "Estou aqui para te dar informações do RU (UFSC) e notificá-lo dos cardápios diários (por @brunoluiz)",
 
   "menu": "Cardápio",
   "menu:error": "Esse cardápio não está disponível",
@@ -34,7 +34,7 @@
   "options:todaymenu": "Cardápio de hoje",
   "options:tmrwmenu": "Cardápio de amanhã",
   "options:weekmenu": "Cardápio da semana",
-  "options:subscribe": "Notificações do Cardápio",
+  "options:subscribe": "Notificações Diárias",
   "options:menu": "Ver Cardápio",
   "options:info": "Sobre e Infos",
   "options:info:subscribe": "Alertas de Cardápio",

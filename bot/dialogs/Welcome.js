@@ -28,7 +28,7 @@ library.dialog('Greeting', (session, results, next) => {
     .buttons(buttons);
 
   let msg = new builder.Message(session).addAttachment(card);
-  session.send(msg);
+  session.endDialog(msg);
 });
 
 module.exports = library;

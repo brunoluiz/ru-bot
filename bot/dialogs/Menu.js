@@ -88,7 +88,7 @@ library.dialog('Week', [(session) => {
         .attachmentLayout(builder.AttachmentLayout.carousel)
         .attachments(cards);
 
-    session.send(carousel);
+    session.endDialog(carousel);
   });
 
 }]);

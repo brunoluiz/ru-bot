@@ -4,17 +4,17 @@ const builder = require('botbuilder');
 const intents = new builder.IntentDialog();
 
 // Strings to match (and its dialogs)
+intents.matches(/alert.*/i, (session) => session.beginDialog('Subscribe:CheckStatus'));
+intents.matches(/assina.*/i, (session) => session.beginDialog('Subscribe:CheckStatus'));
+intents.matches(/notifica.*/i, (session) => session.beginDialog('Subscribe:CheckStatus'));
+intents.matches(/cancel.*/i, (session) => session.beginDialog('Subscribe:CheckStatus'));
+
 intents.matches(/semana/i, (session) => session.beginDialog('Menu:Week'));
 intents.matches(/menu/i, (session) => session.beginDialog('Menu:Week'));
 intents.matches(/cardápio/i, (session) => session.beginDialog('Menu:Week'));
 
 intents.matches(/hoje/i, (session) => session.beginDialog('Menu:Today'));
 intents.matches(/amanhã/i, (session) => session.beginDialog('Menu:Tomorrow'));
-
-intents.matches(/alert.*/i, (session) => session.beginDialog('Subscribe:CheckStatus'));
-intents.matches(/assina.*/i, (session) => session.beginDialog('Subscribe:CheckStatus'));
-intents.matches(/notifica.*/i, (session) => session.beginDialog('Subscribe:CheckStatus'));
-intents.matches(/cancel.*/i, (session) => session.beginDialog('Subscribe:CheckStatus'));
 
 // Default action, when no match is found
 intents.onDefault((session, args, next) => session.beginDialog('Welcome:Greeting'));

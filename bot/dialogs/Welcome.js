@@ -14,9 +14,10 @@ library.dialog('Greeting', (session, results, next) => {
 
   let buttons = [
     builder.CardAction.dialogAction(session, 'Subscriptions', {}, 'options:subscribe'),
-    builder.CardAction.dialogAction(session, 'TodaysMenu', {}, 'options:todaymenu'),
+    // builder.CardAction.dialogAction(session, 'TodaysMenu', {}, 'options:todaymenu'),
     // builder.CardAction.dialogAction(session, 'TomorrowsMenu', {}, 'options:tmrwmenu'),
-    builder.CardAction.dialogAction(session, 'WeeksMenu', {}, 'options:weekmenu')
+    builder.CardAction.dialogAction(session, 'WeeksMenu', {}, 'options:weekmenu'),
+    builder.CardAction.dialogAction(session, 'Info', {}, 'options:info')
   ];
 
   const card = new builder.HeroCard(session)

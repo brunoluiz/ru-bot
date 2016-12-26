@@ -4,6 +4,8 @@
   "whoami": "Pruuuu! Sou o PruBot",
   "open": "Abrir",
   "view": "Ver",
+  "yes": "Sim",
+  "no": "Não",
 
   "menu:error": "Esse cardápio não está disponível",
   "menu:weektitle": "Cardápio da Semana",
@@ -29,6 +31,23 @@
   "options:tmrwmenu": "Cardápio de amanhã",
   "options:weekmenu": "Cardápio da semana",
   "options:subscribe": "Alertas de Cardápio",
+  "options:info": "Sobre e Infos",
+  "options:info:subscribe": "Alertas de Cardápio",
+
+  "info:prompt": "O que você deseja saber?",
+  "info:prompt:again": "Ainda possui alguma dúvida?",
+  "info:prices": "Preços",
+  "info:prices:student": "Aluno",
+  "info:prices:uniemployees": "Servidores, Docentes, Tecnicos administrativos",
+  "info:prices:others": "Visitante institucional devidamente credenciado pela administração",
+  "info:timetable": "Horários",
+  "info:timetable:weekdays": "Durante a semana, o almoço é das 11h00 às 13h30, aberto a qualquer categoria, e o jantar é das 17h às 19h, somente para alunos",
+  "info:timetable:weekends": "Durante os finais de semana, somente os alunos são atendidos. O almoço é das 11h00 às 13h00 e o jantar é das 17h às 19h",
+  "info:timetable:ticketoffice": "A venda dos passes é realizada nos dias de semana, das 8h30 às 19h... Programe-se para não ficar sem passe nos finais de semana!",
+  "info:credits": "Créditos e Sobre",
+  "info:credits:team": "O código desse bot foi desenvolvido por Bruno Luiz da Silva [http://fb.me/brunoluiz] e idealizado em conjunto com Lui Pillman [http://fb.me/luipillmann] e Thomas Machado [http://fb.me/Thomachado].",
+  "info:credits:about": "Ele foi desenvolvido usando o BotFramework [http://botframework.com] e o código está disponível em [https://github.com/brnluiz/pru-bot]. Foi idealizado durante uma HackingGig.",
+
 
   "help": "Pruuu! O que você quer?",
   "help:label": "Estou aqui para te dar informações do RU (por @brunoluiz)"

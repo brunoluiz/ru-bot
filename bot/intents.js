@@ -16,6 +16,9 @@ intents.matches(/cardápio/i, (session) => session.beginDialog('Menu:Week'));
 intents.matches(/hoje/i, (session) => session.beginDialog('Menu:Today'));
 intents.matches(/amanhã/i, (session) => session.beginDialog('Menu:Tomorrow'));
 
+intents.matches(/info/i, (session) => session.beginDialog('Info:Info'));
+intents.matches(/sobre/i, (session) => session.beginDialog('Info:Info'));
+
 intents.matches(/Ver Cardápio/i, (session) => session.beginDialog('Menu:Week'));
 intents.matches(/Alertas diários/i, (session) => session.beginDialog('Subscribe:CheckStatus'));
 

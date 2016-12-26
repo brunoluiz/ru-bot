@@ -20,6 +20,7 @@ bot.library(require('./dialogs/Menu'));
 bot.library(require('./dialogs/Help'));
 bot.library(require('./dialogs/Subscribe'));
 bot.library(require('./dialogs/Welcome'));
+bot.library(require('./dialogs/Info'));
 
 // Init the entry point with the Intents config
 bot.dialog('/', intents);
@@ -30,6 +31,7 @@ bot.beginDialogAction('TomorrowsMenu', 'Menu:Tomorrow');
 bot.beginDialogAction('WeeksMenu', 'Menu:Week');
 bot.beginDialogAction('Menu', 'Menu:Day');
 bot.beginDialogAction('Help', 'Greeting');
+bot.beginDialogAction('Info', 'Info:Info');
 
 // Shows a greeting message for new users
 bot.on('conversationUpdate', (message) => {

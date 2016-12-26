@@ -6,6 +6,7 @@ const connector = require('./bot').connector;
 const mongoose = require('mongoose');
 const axios = require('axios');
 const cheerio = require('cheerio');
+const moment = require('moment');
 
 // Connect to the MongoDB
 mongoose.connect(process.env.MONGODB_URI);
@@ -42,13 +43,13 @@ server.post('/api/populate/:token', (req, res, next) =>
     let dateRange = dateEl.match(/([1-9][0-9]*)\/([1-9][0-9]*)/g);
     let startDateStr = dateRange[0];
     let endDateStr = dateRange[1];
-    let year = $('li.last-update').text().match(/[0-9]{4}/)[0];
+    let year = $('.last-update').text().match(/[0-9]{4}/)[0];
 
     // Get the start date Date object
     let dateInfo = startDateStr.split('/');
     let month = dateInfo[1];
     let day = dateInfo[0];
-    let startDate = new Date(year + '-' + month + '-' + day);
+    let startDate = moment(year + '-' + month + '-' + day);
 
     // Get the menu's table and iterate over it
     let rows = $('table:nth-child(4) > tbody > tr').toArray();
@@ -57,13 +58,10 @@ server.post('/api/populate/:token', (req, res, next) =>
 
       // Get all the columns
       cols = $(row).find('td');
-
-      // Get the right date
-      let date = startDate.setDate(startDate.getDate() + 1);
-
+      
       // Push the item
       items.push({
-        date: new Date(date),
+        date: moment(startDate).add(index-1, 'day').utc().toDate(),
         basics: $(cols[1]).text().trim() + '/ ' + $(cols[2]).text().trim(),
         main_dish: $(cols[3]).text().trim(),
         side_dish: $(cols[4]).text().trim(),

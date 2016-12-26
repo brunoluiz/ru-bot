@@ -1,11 +1,14 @@
 {
   "pru": "Pruuu! ",
-  "greeting": "Olá, sou o PruBot! Posso lhe informar os cardápios e informações sobre o RU da UFSC e notificá-lo diariamente do cardápio do dia. Digite **AJUDA** para saber o que posso oferecer.",
+  "greeting": "Olá, sou o PruBot! Posso lhe informar os cardápios e informações do RU da UFSC e, além disso, notificá-lo diariamente do cardápio do dia. Digite **AJUDA** para ver minhas opções.",
   "whoami": "Pruuuu! Sou o PruBot",
   "open": "Abrir",
   "view": "Ver",
   "yes": "Sim",
   "no": "Não",
+
+  "help": "Pruuu! No que posso ajudar?",
+  "help:label": "Estou aqui para te dar informações do RU e notificá-lo dos cardápios diários (por @brunoluiz)",
 
   "menu": "Cardápio",
   "menu:error": "Esse cardápio não está disponível",
@@ -16,7 +19,6 @@
   "menu:format:side_dish": "Complemento",
   "menu:format:salad": "Salada",
   "menu:format:dessert": "Sobremesa",
-
 
   "subscription": "Assinatura",
   "subscription:prompt": "Você deseja receber notificações diárias com o cardápio do RU?",
@@ -32,7 +34,7 @@
   "options:todaymenu": "Cardápio de hoje",
   "options:tmrwmenu": "Cardápio de amanhã",
   "options:weekmenu": "Cardápio da semana",
-  "options:subscribe": "Alertas de Cardápio",
+  "options:subscribe": "Notificações do Cardápio",
   "options:menu": "Ver Cardápio",
   "options:info": "Sobre e Infos",
   "options:info:subscribe": "Alertas de Cardápio",
@@ -49,9 +51,5 @@
   "info:timetable:ticketoffice": "A venda dos passes é realizada nos dias de semana, das 8h30 às 19h... Programe-se para não ficar sem passe nos finais de semana!",
   "info:credits": "Créditos e Sobre",
   "info:credits:team": "O código desse bot foi desenvolvido por Bruno Luiz da Silva [http://fb.me/brunoluiz] e idealizado em conjunto com Lui Pillman [http://fb.me/luipillmann] e Thomas Machado [http://fb.me/Thomachado].",
-  "info:credits:about": "Ele foi desenvolvido usando o BotFramework [http://botframework.com] e o código está disponível em [https://github.com/brnluiz/pru-bot]. Foi idealizado durante uma HackingGig.",
-
-
-  "help": "Pruuu! O que você quer?",
-  "help:label": "Estou aqui para te dar informações do RU (por @brunoluiz)"
+  "info:credits:about": "Ele foi desenvolvido usando o BotFramework [http://botframework.com] e o código está disponível em [https://github.com/brnluiz/pru-bot]. Foi idealizado durante uma HackingGig."
 }

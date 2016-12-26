@@ -1,16 +1,16 @@
 const builder = require('botbuilder');
-const library = new builder.Library('Subscribe');
+const library = new builder.Library('Subscription');
 const Subscription = require('../../models/Subscription');
 
 // ENTRY POINT
-library.dialog('CheckStatus',
+library.dialog('Subscription',
 (session) => Subscription.isSubscribed(session, (result) => {
   if (result) {
     session.send('subscribe:alreadysubscribed');
-    return session.replaceDialog('Subscribe:Cancel');
+    return session.replaceDialog('Subscription:Cancel');
   } else {
     session.send('subscribe:notsubscribed');
-    return session.replaceDialog('Subscribe:Subscribe');
+    return session.replaceDialog('Subscription:Subscribe');
   }
 }));
 
@@ -42,14 +42,13 @@ library.dialog('Subscribe', [(session) => {
 // CANCEL DIALOG
 
 library.dialog('Cancel', [(session) => {
-  const yesOrNoOptions = ['Sim', 'Não'];
-  builder.Prompts.choice(session, 'subscribe:cancel', yesOrNoOptions, {
+  builder.Prompts.choice(session, 'subscribe:cancel', ['yes', 'no'], {
     maxRetries: 0
   });
 }, (session, results, next) => {
   if (results.response) {
     const option = results.response.entity;
-    if (option == 'Sim') return next();
+    if (option == 'yes') return next();
   }
 
   session.endDialog('subscribe:notcanceled');

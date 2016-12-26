@@ -7,7 +7,7 @@ let options = {};
 const url = process.env.URL || 'http://localhost:'+process.env.PORT;
 
 library.dialog('Greeting', (session, results, next) => {
-  options[I18n(session, 'options:subscribe')] = {id: 'Subscribe:CheckStatus'};
+  options[I18n(session, 'options:subscribe')] = {id: 'Subscription:Subscription'};
   options[I18n(session, 'options:todaymenu')] = {id: 'Menu:Today'};
   options[I18n(session, 'options:tmrwmenu')] = {id: 'Menu:Tomorrow'};
   options[I18n(session, 'options:weekmenu')] = {id: 'Menu:Week'};

@@ -21,8 +21,7 @@ library.dialog('Info', [(session) => {
   session.sendTyping();
   session.beginDialog(option.id);
 
-  const yesOrNoOptions = ['yes' , 'no'];
-  builder.Prompts.choice(session, 'info:prompt:again', yesOrNoOptions, {
+  builder.Prompts.choice(session, 'info:prompt:again', ['yes' , 'no'], {
     maxRetries: 1
   });
 }, (session, results) => {

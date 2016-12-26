@@ -18,14 +18,14 @@ const bot = new builder.UniversalBot(connector, {
 // Load the libraries (dialogs)
 bot.library(require('./dialogs/Menu'));
 bot.library(require('./dialogs/Help'));
-bot.library(require('./dialogs/Subscribe'));
+bot.library(require('./dialogs/Subscription'));
 bot.library(require('./dialogs/Welcome'));
 bot.library(require('./dialogs/Info'));
 
 // Init the entry point with the Intents config
 bot.dialog('/', intents);
 
-bot.beginDialogAction('Subscriptions', 'Subscribe:CheckStatus');
+bot.beginDialogAction('Subscriptions', 'Subscription:Subscription');
 bot.beginDialogAction('TodaysMenu', 'Menu:Today');
 bot.beginDialogAction('TomorrowsMenu', 'Menu:Tomorrow');
 bot.beginDialogAction('WeeksMenu', 'Menu:Week');

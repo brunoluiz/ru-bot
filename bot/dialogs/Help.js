@@ -5,7 +5,7 @@ const library = new builder.Library('Help');
 let options = {};
 
 library.dialog('Options', [(session) => {
-  options[I18n(session, 'options:subscribe')] = {id: 'Subscribe:CheckStatus'};
+  options[I18n(session, 'options:subscribe')] = {id: 'Subscription:Subscription'};
   options[I18n(session, 'options:todaymenu')] = {id: 'Menu:Today'};
   options[I18n(session, 'options:tmrwmenu')] = {id: 'Menu:Tomorrow'};
   options[I18n(session, 'options:weekmenu')] = {id: 'Menu:Week'};

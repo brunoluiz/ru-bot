@@ -32,4 +32,9 @@ library.dialog('Welcome', (session, results, next) => {
   session.endDialog(msg);
 });
 
+library.dialog('Greeting', (session, results, next) => {
+  session.replaceDialog('Welcome:Welcome');
+  session.send('greeting');
+});
+
 module.exports = library;

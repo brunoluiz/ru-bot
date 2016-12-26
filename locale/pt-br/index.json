@@ -8,7 +8,7 @@
   "no": "Não",
 
   "help": "Pruuu! No que posso ajudar?",
-  "help:label": "Estou aqui para te dar informações do RU (UFSC) e notificá-lo dos cardápios diários (por @brunoluiz)",
+  "help:label": "Dou informações do RU-UFSC e notificações dos cardápios diários - by @brunoluiz",
 
   "menu": "Cardápio",
   "menu:error": "Esse cardápio não está disponível",
@@ -50,6 +50,7 @@
   "info:timetable:weekends": "Durante os finais de semana, somente os alunos são atendidos. O almoço é das 11h00 às 13h00 e o jantar é das 17h às 19h",
   "info:timetable:ticketoffice": "A venda dos passes é realizada nos dias de semana, das 8h30 às 19h... Programe-se para não ficar sem passe nos finais de semana!",
   "info:credits": "Créditos e Sobre",
-  "info:credits:team": "O código desse bot foi desenvolvido por Bruno Luiz da Silva [http://fb.me/brunoluiz] e idealizado em conjunto com Lui Pillman [http://fb.me/luipillmann] e Thomas Machado [http://fb.me/Thomachado].",
-  "info:credits:about": "Ele foi desenvolvido usando o BotFramework [http://botframework.com] e o código está disponível em [https://github.com/brnluiz/pru-bot]. Foi idealizado durante uma HackingGig."
+  "info:credits:team": "O código desse bot foi desenvolvido por Bruno Luiz da Silva [http://fb.me/brunoluiz] e o projeto foi idealizado em conjunto com Lui Pillman [http://fb.me/luipillmann] e Thomas Machado [http://fb.me/Thomachado]",
+  "info:credits:code": "O código está disponível em [https://github.com/brnluiz/pru-bot] e ele foi desenvolvido usando o Microsoft BotFramework [http://botframework.com]",
+  "info:credits:about": "Foi idealizado durante uma HackingGig [http://hackinggigs.com] e encorajamos que a comunidade melhore o código e talvez até porte para seu próprio RU"
 }

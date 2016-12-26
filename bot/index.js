@@ -17,7 +17,6 @@ const bot = new builder.UniversalBot(connector, {
 
 // Load the libraries (dialogs)
 bot.library(require('./dialogs/Menu'));
-bot.library(require('./dialogs/Help'));
 bot.library(require('./dialogs/Subscription'));
 bot.library(require('./dialogs/Welcome'));
 bot.library(require('./dialogs/Info'));
@@ -36,7 +35,7 @@ bot.beginDialogAction('Info', 'Info:Info');
 // Shows a greeting message for new users
 bot.on('conversationUpdate', (message) => {
   if (message.membersAdded) {
-    bot.beginDialog(message.address, 'Welcome:Welcome');
+    bot.beginDialog(message.address, 'Welcome:Greeting');
   }
 });
 

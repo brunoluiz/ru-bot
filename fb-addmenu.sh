@@ -26,7 +26,12 @@ curl -X POST -H "Content-Type: application/json" -d '{
     {
       "type": "postback",
       "title":"Ver Cardápio",
-      "payload":"action?WeeksMenu"
+      "payload":"action?Menu"
+    },
+    {
+      "type":"postback",
+      "title":"Sobre e Infos",
+      "payload":"action?Info"
     },
     {
       "type":"postback",

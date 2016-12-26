@@ -52,7 +52,8 @@ library.dialog('Timetable', (session) => {
 
 library.dialog('Credits', (session) => {
   session.send('info:credits:team');
-  session.send("info:credits:about");
+  session.send('info:credits:about');
+  session.send('info:credits:about');
 });
 
 module.exports = library;

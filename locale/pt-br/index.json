@@ -3,6 +3,7 @@
   "greeting": "Olá, sou o PruBot! Posso lhe informar os cardápios e informações sobre o RU da UFSC e notificá-lo diariamente do cardápio do dia. Digite **AJUDA** para saber o que posso oferecer.",
   "whoami": "Pruuuu! Sou o PruBot",
   "open": "Abrir",
+  "view": "Ver",
 
   "menu:error": "Esse cardápio não está disponível",
   "menu:weektitle": "Cardápio da Semana",

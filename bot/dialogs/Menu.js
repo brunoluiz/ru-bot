@@ -2,6 +2,7 @@ const builder = require('botbuilder');
 const fs = require('fs');
 const Formatter = require('../../helpers/Formatter');
 const Utils = require('../../helpers/Utils');
+const I18n = require('../../helpers/I18n');
 const moment = require('moment');
 const Menu = require('../../models/Menu');
 
@@ -59,6 +60,7 @@ library.dialog('Week', [(session) => {
   // Fetch the menu data and send it
   Menu.getActualWeek((err, result) => {
     let cards = new Array();
+    let images = Utils.shuffle(cardImages);
 
     result.sort((a,b) =>
       moment(a.date).isAfter(moment(a.b)) ? -1 : 1
@@ -70,15 +72,16 @@ library.dialog('Week', [(session) => {
       const dateString = date.format('dddd');
       const title = dateString + ' (' + dateNumber + ')';
 
-      const action   = builder.CardAction.dialogAction(session, 'Menu', payload, dateString);
+      const buttonText  = I18n(session,'view') + ' ' + dateString;
+      const button = builder.CardAction.dialogAction(session, 'Menu', payload, buttonText);
 
       const card = new builder.ThumbnailCard(session)
         .title(title)
         .images([
-          builder.CardImage.create(session, Utils.shuffle(cardImages)[index])
+          builder.CardImage.create(session, images[index])
         ])
-        .buttons([action])
-        .tap(action);
+        .buttons([button])
+        .tap(button);
 
       cards.push(card);
     });

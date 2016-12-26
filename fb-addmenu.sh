@@ -19,14 +19,14 @@ curl -X POST -H "Content-Type: application/json" -d '{
   "thread_state" : "existing_thread",
   "call_to_actions":[
     {
+      "type":"postback",
+      "title":"Alertas de Cardápio",
+      "payload":"action?Subscriptions"
+    },
+    {
       "type": "postback",
       "title":"Ver Cardápio",
       "payload":"action?WeeksMenu"
-    },
-    {
-      "type":"postback",
-      "title":"Alertas diários",
-      "payload":"action?Subscriptions"
     },
     {
       "type":"postback",

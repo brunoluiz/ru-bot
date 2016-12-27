@@ -73,7 +73,7 @@ library.dialog('Menu', [(session) => {
       const title = dateString + ' (' + dateNumber + ')';
 
       const buttonText  = I18n(session,'view') + ' ' + dateString;
-      const button = builder.CardAction.dialogAction(session, 'Menu', payload, buttonText);
+      const button = builder.CardAction.dialogAction(session, 'DayMenu', payload, buttonText);
 
       const card = new builder.ThumbnailCard(session)
         .title(title)

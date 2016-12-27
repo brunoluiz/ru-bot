@@ -28,6 +28,7 @@ bot.beginDialogAction('Subscriptions', 'Subscription:Subscription');
 bot.beginDialogAction('TodaysMenu', 'Menu:Today');
 bot.beginDialogAction('TomorrowsMenu', 'Menu:Tomorrow');
 bot.beginDialogAction('WeeksMenu', 'Menu:Menu');
+bot.beginDialogAction('DayMenu', 'Menu:Day');
 bot.beginDialogAction('Menu', 'Menu:Menu');
 bot.beginDialogAction('Help', 'Main:Main');
 bot.beginDialogAction('Info', 'Info:Info');

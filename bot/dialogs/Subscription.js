@@ -2,6 +2,8 @@ const builder = require('botbuilder');
 const library = new builder.Library('Subscription');
 const Subscription = require('../../models/Subscription');
 
+const isResponseYes = (results) => (results.response && results.response.entity == 'yes')
+
 // ENTRY POINT
 library.dialog('Subscription',
 (session) => Subscription.isSubscribed(session, (result) => {
@@ -21,10 +23,7 @@ library.dialog('Subscribe', [(session) => {
     maxRetries: 0
   });
 }, (session, results, next) => {
-  if (results.response) {
-    const option = results.response.entity;
-    if (option == 'Sim') return next();
-  }
+  if (isResponseYes(results)) return next();
 
   session.endDialog('subscription:notconfirmed');
 }, (session, results, next) => {
@@ -45,10 +44,7 @@ library.dialog('Cancel', [(session) => {
     maxRetries: 0
   });
 }, (session, results, next) => {
-  if (results.response) {
-    const option = results.response.entity;
-    if (option == 'yes') return next();
-  }
+  if (isResponseYes(results)) return next();
 
   session.endDialog('subscription:notcanceled');
 }, (session, results, next) => {

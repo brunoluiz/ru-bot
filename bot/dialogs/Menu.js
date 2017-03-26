@@ -19,8 +19,6 @@ const getMenu = (session, date) => Menu.getDay(date, (err, result) => {
   return session.endDialog(menu);
 });
 
-const isEmpty = (object) => 
-
 library.dialog('Today', (session) => {
   const date = moment().utc().toDate().setUTCHours(0, 0, 0, 0);
   return getMenu(session, date);

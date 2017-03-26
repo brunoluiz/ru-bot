@@ -34,11 +34,8 @@ bot.beginDialogAction('Help', 'Main:Main');
 bot.beginDialogAction('Info', 'Info:Info');
 
 // Shows a greeting message for new users
-bot.on('conversationUpdate', (message) => {
-  if (message.membersAdded) {
-    bot.beginDialog(message.address, 'Main:Greeting');
-  }
-});
+bot.on('conversationUpdate', message =>
+  ((message.membersAdded) ? bot.beginDialog(message.address, 'Main:Greeting') : null));
 
 module.exports = {
   connector,

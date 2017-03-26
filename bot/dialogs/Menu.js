@@ -21,7 +21,7 @@ const cardImages = [
 
 // Get the specified date menu item
 const getMenu = (session, date) => Menu.getDay(date, (err, result) => {
-  if (err || !result) return session.endDialog('menu:error');
+  if (err || !result) return session.endDialog('error');
 
   session.sendTyping();
 

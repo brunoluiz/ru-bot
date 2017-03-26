@@ -9,7 +9,7 @@ library.dialog('Info', [(session) => {
   options[I18n(session, 'info:prices')] = { id: 'Info:Prices' };
   options[I18n(session, 'info:credits')] = { id: 'Info:Credits' };
 
-  return builder.Prompts.choice(session, 'info:prompt', options, {
+  return builder.Prompts.choice(session, 'prompt', options, {
     maxRetries: 0,
   });
 }, (session, results) => {
@@ -21,7 +21,7 @@ library.dialog('Info', [(session) => {
   session.sendTyping();
   session.beginDialog(option.id);
 
-  return builder.Prompts.choice(session, 'info:prompt:again', ['yes', 'no'], {
+  return builder.Prompts.choice(session, 'prompt:again', ['yes', 'no'], {
     maxRetries: 0,
   });
 }, (session, results) => {
@@ -35,7 +35,7 @@ library.dialog('Info', [(session) => {
 }]);
 
 library.dialog('Prices', (session) => {
-  session.send('info:prices');
+  session.send('prices');
   let prices = '';
   prices += `- ${I18n(session, 'info:prices:student')}: R$ 1.50\n`;
   prices += `- ${I18n(session, 'info:prices:uniemployees')}: R$ 2.90\n`;
@@ -44,15 +44,15 @@ library.dialog('Prices', (session) => {
 });
 
 library.dialog('Timetable', (session) => {
-  session.send('info:timetable:weekdays');
-  session.send('info:timetable:weekends');
-  session.send('info:timetable:ticketoffice');
+  session.send('timetable:weekdays');
+  session.send('timetable:weekends');
+  session.send('timetable:ticketoffice');
 });
 
 library.dialog('Credits', (session) => {
-  session.send('info:credits:team');
-  session.send('info:credits:about');
-  session.send('info:credits:about');
+  session.send('credits:team');
+  session.send('credits:about');
+  session.send('credits:about');
 });
 
 module.exports = library;

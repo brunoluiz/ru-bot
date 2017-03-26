@@ -1,8 +1,7 @@
 {
   "pru": "Pruuu! ",
-  "greeting:whoami": "Pruuuu! Sou o pRUBot",
-  "greeting:purpose": "Posso lhe informar os cardápios e informações do RU da UFSC e, além disso, notificá-lo diariamente do cardápio do dia",
-  "greeting:firstinteraction": "Digite AJUDA ou clique no botão no canto inferior esquerdo para ver o que ofereço",
+  "main:purpose": "Posso lhe informar os cardápios e informações do RU da UFSC e, além disso, notificá-lo diariamente do cardápio do dia",
+  "main:firstinteraction": "Digite AJUDA ou clique no botão no canto inferior esquerdo para ver o que ofereço",
 
   "open": "Abrir",
   "view": "Ver",
@@ -10,7 +9,9 @@
   "no": "Não",
 
   "help": "Pruuu! No que posso ajudar?",
-  "help:label": "Dou informações do RU-UFSC e notificações dos cardápios diários - by @brunoluiz",
+
+  "main:whoami": "Pruuuu! Sou o pRUBot",
+  "main:help:label": "Dou informações do RU-UFSC e notificações dos cardápios diários - by @brunoluiz",
 
   "menu": "Cardápio",
   "menu:error": "Esse cardápio não está disponível",
@@ -32,14 +33,14 @@
   "subscription:notsubscribed": "Você não está cadastrado para receber notificações!",
   "subscription:alreadysubscribed": "Você já está cadastrado para receber notificações!",
 
-  "options:notvalid": "Pruuu! Opção inválida! Digite **AJUDA** para ver o menu novamente",
-  "options:todaymenu": "Cardápio de hoje",
-  "options:tmrwmenu": "Cardápio de amanhã",
-  "options:weekmenu": "Cardápio da semana",
-  "options:subscribe": "Alertas Cardápio",
-  "options:menu": "Ver Cardápio",
-  "options:info": "Sobre e Infos",
-  "options:info:subscribe": "Alertas de Cardápio",
+  "main:options:notvalid": "Pruuu! Opção inválida! Digite **AJUDA** para ver o menu novamente",
+  "main:options:todaymenu": "Cardápio de hoje",
+  "main:options:tmrwmenu": "Cardápio de amanhã",
+  "main:options:weekmenu": "Cardápio da semana",
+  "main:options:subscribe": "Alertas Cardápio",
+  "main:options:menu": "Ver Cardápio",
+  "main:options:info": "Sobre e Infos",
+  "main:options:info:subscribe": "Alertas de Cardápio",
 
   "info:prompt": "O que você deseja saber?",
   "info:prompt:again": "Ainda possui alguma dúvida?",

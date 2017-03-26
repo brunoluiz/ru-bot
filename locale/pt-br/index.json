@@ -44,6 +44,7 @@
 
   "info:prompt": "O que você deseja saber?",
   "info:prompt:again": "Ainda possui alguma dúvida?",
+  "info:options:notvalid": "Pruuu! Opção inválida! Digite **AJUDA** para ver o menu novamente",
   "info:prices": "Preços",
   "info:prices:student": "Aluno",
   "info:prices:uniemployees": "Servidores, Docentes, Tecnicos administrativos",

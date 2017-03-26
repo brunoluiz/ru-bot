@@ -16,7 +16,6 @@ library.dialog('Subscription', session => Subscription.isSubscribed(session, (re
 }));
 
 // SUBSCRIBE DIALOG
-
 library.dialog('Subscribe', [(session) => {
   builder.Prompts.choice(session, 'subscription:prompt', ['yes', 'no'], {
     maxRetries: 0,
@@ -24,8 +23,8 @@ library.dialog('Subscribe', [(session) => {
 }, (session, results, next) => {
   if (isResponseYes(results)) return next();
 
-  session.endDialog('subscription:notconfirmed');
-}, (session, results, next) => {
+  return session.endDialog('subscription:notconfirmed');
+}, (session) => {
   session.sendTyping();
 
   Subscription.collection.insert({
@@ -37,7 +36,6 @@ library.dialog('Subscribe', [(session) => {
 }]);
 
 // CANCEL DIALOG
-
 library.dialog('Cancel', [(session) => {
   builder.Prompts.choice(session, 'subscription:cancel', ['yes', 'no'], {
     maxRetries: 0,
@@ -45,8 +43,8 @@ library.dialog('Cancel', [(session) => {
 }, (session, results, next) => {
   if (isResponseYes(results)) return next();
 
-  session.endDialog('subscription:notcanceled');
-}, (session, results, next) => {
+  return session.endDialog('subscription:notcanceled');
+}, (session) => {
   session.sendTyping();
 
   Subscription.remove({

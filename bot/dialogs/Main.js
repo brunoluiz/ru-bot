@@ -2,11 +2,11 @@ const I18n = require('../../helpers/I18n');
 const builder = require('botbuilder');
 const library = new builder.Library('Main');
 
-let options = {};
+const options = {};
 
-const url = process.env.URL || 'http://localhost:' + process.env.PORT;
+const url = process.env.URL || `http://localhost:${process.env.PORT}`;
 
-library.dialog('Main', (session, results, next) => {
+library.dialog('Main', (session, results) => {
   options[I18n(session, 'options:subscribe')] = { id: 'Subscription:Subscription' };
   options[I18n(session, 'options:todaymenu')] = { id: 'Menu:Today' };
   options[I18n(session, 'options:tmrwmenu')] = { id: 'Menu:Tomorrow' };
@@ -24,7 +24,7 @@ library.dialog('Main', (session, results, next) => {
     .title('greeting:whoami')
     .text('help:label')
     .images([
-      builder.CardImage.create(session, url + '/public/assets/images/hero_pigeon.jpg'),
+      builder.CardImage.create(session, `${url}/public/assets/images/hero_pigeon.jpg`),
     ])
     .buttons(buttons);
 
@@ -32,7 +32,7 @@ library.dialog('Main', (session, results, next) => {
   session.endDialog(msg);
 });
 
-library.dialog('Greeting', (session, results, next) => {
+library.dialog('Greeting', (session) => {
   session.replaceDialog('Main:Main');
   session.sendTyping();
   session.send('greeting:whoami');

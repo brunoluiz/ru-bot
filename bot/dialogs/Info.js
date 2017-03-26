@@ -2,7 +2,7 @@ const I18n = require('../../helpers/I18n');
 const builder = require('botbuilder');
 const library = new builder.Library('Info');
 
-let options = {};
+const options = {};
 
 library.dialog('Info', [(session) => {
   options[I18n(session, 'info:timetable')] = { id: 'Info:Timetable' };
@@ -21,25 +21,25 @@ library.dialog('Info', [(session) => {
   session.sendTyping();
   session.beginDialog(option.id);
 
-  builder.Prompts.choice(session, 'info:prompt:again', ['yes' , 'no'], {
+  return builder.Prompts.choice(session, 'info:prompt:again', ['yes', 'no'], {
     maxRetries: 1,
   });
 }, (session, results) => {
   if (!results.response) {
     return session.endConversation('options:notvalid');
   } else if (results.response.entity === 'yes') {
-    session.replaceDialog('Info:Info');
-  } else {
-    return session.endConversation();
+    return session.replaceDialog('Info:Info');
   }
+
+  return session.endConversation();
 }]);
 
 library.dialog('Prices', (session) => {
   session.send('info:prices');
   let prices = '';
-  prices += '- ' + I18n(session, 'info:prices:student') + ': R$ 1.50\n';
-  prices += '- ' + I18n(session, 'info:prices:uniemployees') + ': R$ 2.90\n';
-  prices += '- ' + I18n(session, 'info:prices:others') + ': R$ 6.10\n';
+  prices += `- ${I18n(session, 'info:prices:student')}: R$ 1.50\n`;
+  prices += `- ${I18n(session, 'info:prices:uniemployees')}: R$ 2.90\n`;
+  prices += `- ${I18n(session, 'info:prices:others')}: R$ 6.10\n`;
   session.send(prices);
 });
 

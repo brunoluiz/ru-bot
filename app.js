@@ -42,14 +42,14 @@ server.post('/api/populate/:token', (req, res, next) =>
     const dateEl = $('p:nth-child(1) > span:first-child').text();
     const dateRange = dateEl.match(/([1-9][0-9]*)\/([1-9][0-9]*)/g);
     const startDateStr = dateRange[0];
-    const endDateStr = dateRange[1];
+    // const endDateStr = dateRange[1];
     const year = $('.last-update').text().match(/[0-9]{4}/)[0];
 
     // Get the start date Date object
     const dateInfo = startDateStr.split('/');
     const month = dateInfo[1];
     const day = dateInfo[0];
-    const startDate = moment(year + '-' + month + '-' + day);
+    const startDate = moment(`${year}-${month}-${day}`);
 
     // Get the menu's table and iterate over it
     const rows = $('table:nth-child(4) > tbody > tr').toArray();
@@ -62,7 +62,7 @@ server.post('/api/populate/:token', (req, res, next) =>
       // Push the item
       items.push({
         date: moment(startDate).add(index - 1, 'day').utc().toDate(),
-        basics: $(cols[1]).text().trim() + '/ ' + $(cols[2]).text().trim(),
+        basics: `${$(cols[1]).text().trim()} / ${$(cols[2]).text().trim()}`,
         main_dish: $(cols[3]).text().trim(),
         side_dish: $(cols[4]).text().trim(),
         salad: $(cols[5]).text().trim(),
@@ -74,9 +74,10 @@ server.post('/api/populate/:token', (req, res, next) =>
     Menu.collection.insert(items);
 
     res.send(200);
+    return next();
   }));
 
-server.post('/api/notify/:token', (req, res, next) => {
+server.post('/api/notify/:token', (req, res) => {
   if (req.params.token !== process.env.SECTOKEN) {
     res.send(401);
   }
@@ -90,5 +91,5 @@ server.post('/api/notify/:token', (req, res, next) => {
 });
 
 server.get(/\/public\/?.*/, restify.serveStatic({
-  directory: __dirname
+  directory: __dirname,
 }));

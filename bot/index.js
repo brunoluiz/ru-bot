@@ -3,16 +3,16 @@ const intents = require('./intents');
 
 // Create the connector (needs to be configurated on the MS Platform)
 const connector = new builder.ChatConnector({
-    appId: process.env.MICROSOFT_APP_ID,
-    appPassword: process.env.MICROSOFT_APP_PASSWORD
+  appId: process.env.MICROSOFT_APP_ID,
+  appPassword: process.env.MICROSOFT_APP_PASSWORD,
 });
 
 // Create chat bot
 const bot = new builder.UniversalBot(connector, {
   localizerSettings: {
     defaultLocale: process.env.LOCALE || 'pt-br',
-    botLocalePath: process.env.LOCALE_PATH || './locale'
-  }
+    botLocalePath: process.env.LOCALE_PATH || './locale',
+  },
 });
 
 // Load the libraries (dialogs)
@@ -41,6 +41,6 @@ bot.on('conversationUpdate', (message) => {
 });
 
 module.exports = {
-  connector: connector,
-  bot: bot
+  connector,
+  bot,
 };

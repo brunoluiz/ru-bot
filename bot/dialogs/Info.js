@@ -5,12 +5,12 @@ const library = new builder.Library('Info');
 let options = {};
 
 library.dialog('Info', [(session) => {
-  options[I18n(session, 'info:timetable')] = {id: 'Info:Timetable'};
-  options[I18n(session, 'info:prices')] = {id: 'Info:Prices'};
-  options[I18n(session, 'info:credits')] = {id: 'Info:Credits'};
+  options[I18n(session, 'info:timetable')] = { id: 'Info:Timetable' };
+  options[I18n(session, 'info:prices')] = { id: 'Info:Prices' };
+  options[I18n(session, 'info:credits')] = { id: 'Info:Credits' };
 
   builder.Prompts.choice(session, 'info:prompt', options, {
-    maxRetries: 0
+    maxRetries: 0,
   });
 }, (session, results) => {
   if (!results.response) {
@@ -22,13 +22,12 @@ library.dialog('Info', [(session) => {
   session.beginDialog(option.id);
 
   builder.Prompts.choice(session, 'info:prompt:again', ['yes' , 'no'], {
-    maxRetries: 1
+    maxRetries: 1,
   });
 }, (session, results) => {
-  console.log('response', results.response);
   if (!results.response) {
     return session.endConversation('options:notvalid');
-  } else if (results.response.entity == 'yes') {
+  } else if (results.response.entity === 'yes') {
     session.replaceDialog('Info:Info');
   } else {
     return session.endConversation();

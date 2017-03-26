@@ -36,17 +36,20 @@ const getMenu = (session, date) => (
     session.sendTyping();
 
     // Format the menu and send it
-    let menu = Formatter.menu(session, result);
+    const menu = Formatter.menu(session, result);
     session.endDialog(menu);
   })
 );
 
 library.dialog('Today', (session) => {
-  const date = moment().utc().toDate().setUTCHours(0,0,0,0);
+  const date = moment().utc().toDate().setUTCHours(0, 0, 0, 0);
   return getMenu(session, date);
 });
 library.dialog('Tomorrow', (session) => {
-  const date = moment().add(1, 'day').utc().toDate().setUTCHours(0,0,0,0);
+  const date = moment()
+    .add(1, 'day')
+    .utc().toDate()
+    .setUTCHours(0, 0, 0, 0);
   return getMenu(session, date);
 });
 library.dialog('Day', (session, results, next) => {
@@ -59,26 +62,25 @@ library.dialog('Menu', [(session) => {
 
   // Fetch the menu data and send it
   Menu.getActualWeek((err, result) => {
-    let cards = new Array();
-    let images = Utils.shuffle(cardImages);
+    const cards = [];
+    const images = Utils.shuffle(cardImages);
 
-    result.sort((a,b) =>
-      moment(a.date).isAfter(moment(a.b)) ? -1 : 1
-    ).forEach((item, index) => {
-      const payload  = JSON.stringify({date: item.date});
+    result.sort((a, b) => moment(a.date).isAfter(moment(a.b)) ? -1 : 1)
+    .forEach((item, index) => {
+      const payload = JSON.stringify({ date: item.date });
 
       const date = moment(item.date).locale('pt-br').utc();
       const dateNumber = date.format('DD/M/YY');
       const dateString = date.format('dddd');
       const title = dateString + ' (' + dateNumber + ')';
 
-      const buttonText  = I18n(session,'view') + ' ' + dateString;
+      const buttonText = I18n(session, 'view') + ' ' + dateString;
       const button = builder.CardAction.dialogAction(session, 'DayMenu', payload, buttonText);
 
       const card = new builder.ThumbnailCard(session)
         .title(title)
         .images([
-          builder.CardImage.create(session, images[index])
+          builder.CardImage.create(session, images[index]),
         ])
         .buttons([button])
         .tap(button);
@@ -93,7 +95,6 @@ library.dialog('Menu', [(session) => {
 
     session.endDialog(carousel);
   });
-
 }]);
 
 module.exports = library;

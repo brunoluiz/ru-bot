@@ -44,40 +44,38 @@ library.dialog('Menu', [(session, results, next) => {
   const cards = [];
   const images = Utils.shuffle(foods);
 
-  // TODO: check if there is a menu for this day
-  result
+  const menu = result
     .filter(item => moment(item.date).isSameOrAfter(moment(), 'day'))
-    .sort((a, b) => (moment(a.date).isAfter(b.date) ? 1 : -1))
-    .forEach((item, index) => {
-      const payload = JSON.stringify({ date: item.date });
+    .sort((a, b) => (moment(a.date).isAfter(b.date) ? 1 : -1));
 
-      const date = moment(item.date).locale('pt-br').utc();
-      const dateNumber = date.format('DD/M/YY');
-      const dateString = date.format('dddd');
-      const title = `${dateString} (${dateNumber})`;
+  if (menu.length === 0) return session.endDialog('error');
 
-      const buttonText = `${I18n(session, 'view')} ${dateString}`;
-      const button = builder.CardAction.dialogAction(session, 'DayMenu', payload, buttonText);
+  menu.forEach((item, index) => {
+    const payload = JSON.stringify({ date: item.date });
 
-      const card = new builder.ThumbnailCard(session)
-        .title(title)
-        .images([
-          builder.CardImage.create(session, images[index]),
-        ])
-        .buttons([button])
-        .tap(button);
+    const date = moment(item.date).locale('pt-br').utc();
+    const dateNumber = date.format('DD/M/YY');
+    const dateString = date.format('dddd');
+    const title = `${dateString} (${dateNumber})`;
 
-      cards.push(card);
+    const buttonText = `${I18n(session, 'view')} ${dateString}`;
+    const button = builder.CardAction.dialogAction(session, 'DayMenu', payload, buttonText);
 
-      return card;
-    });
+    const card = new builder.ThumbnailCard(session)
+      .title(title)
+      .images([builder.CardImage.create(session, images[index])])
+      .buttons([button])
+      .tap(button);
+
+    cards.push(card);
+  });
 
   const carousel = new builder.Message(session)
       .textFormat(builder.TextFormat.xml)
       .attachmentLayout(builder.AttachmentLayout.carousel)
       .attachments(cards);
 
-  session.endDialog(carousel);
+  return session.endDialog(carousel);
 })]);
 
 module.exports = library;

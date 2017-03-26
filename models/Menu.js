@@ -13,9 +13,8 @@ const menuSchema = mongoose.Schema({
 menuSchema.statics.getActualWeek = callback => mongoose
   .model('Menu').find(callback).limit(7).sort({ date: -1 });
 
-menuSchema.statics.getDay = (day, callback) => (
-  mongoose.model('Menu').findOne({ date: day }, callback)
-);
+menuSchema.statics.getDay = (day, callback) => mongoose
+  .model('Menu').findOne({ date: day }, callback);
 
 const Menu = mongoose.model('Menu', menuSchema);
 

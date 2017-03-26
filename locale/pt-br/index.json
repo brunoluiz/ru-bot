@@ -14,7 +14,7 @@
   "main:help:label": "Dou informações do RU-UFSC e notificações dos cardápios diários - by @brunoluiz",
 
   "menu": "Cardápio",
-  "menu:error": "Esse cardápio não está disponível",
+  "menu:error": "Pruuu! Cardápio não disponível!",
   "menu:weektitle": "Cardápio da Semana",
   "menu:format:title": "Cardápio de ",
   "menu:format:basics": "Acompanhamento",

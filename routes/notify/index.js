@@ -1,22 +1,26 @@
 const Subscription = require('../../models/Subscription');
 const Router = require('restify-router').Router;
+const Menu = require('../../models/Menu');
+const moment = require('moment');
+const restify = require('restify');
 const bot = require('../../bot').bot;
 
 const NotifyRouter = new Router();
 
-// add a route like you would on a restify server instance
-NotifyRouter.post('/api/notify/:token', (req, res, next) => {
-  if (req.params.token !== process.env.SECTOKEN) {
-    res.send(401);
-  }
+NotifyRouter.post('/api/notify/:token', (req, res, next) =>
+  ((req.params.token !== process.env.SECTOKEN) ?
+    next(new restify.errors.UnauthorizedError()) : next())
+, (req, res, next) => {
+  // Check if there is a menu to notify users about
+  const today = moment().startOf('day').toDate();
+  Menu.getDay(today, (err, menu) =>
+    ((err || !menu) ? next(new restify.errors.MethodNotAllowedError('Empty Menu')) : next()));
+}, (req, res, next) => Subscription.find().exec((err, subscriptions) => {
+  subscriptions.forEach(subscription =>
+    bot.beginDialog(subscription.address, 'Menu:Today'));
 
-  // Get all subscriptions and send the Today's Menu
-  Subscription.find().exec((err, subscriptions) =>
-    subscriptions.forEach(subscription =>
-      bot.beginDialog(subscription.address, 'Menu:Today')));
-
-  res.send(201);
+  res.send(200);
   return next();
-});
+}));
 
 module.exports = NotifyRouter;

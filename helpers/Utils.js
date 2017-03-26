@@ -1,13 +1,11 @@
 const shuffleArray = (array) => {
-  const shuffle = [];
   for (let i = array.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
     const temp = array[i];
-    shuffle[i] = array[j];
-    shuffle[j] = temp;
+    array[i] = array[j];
+    array[j] = temp;
   }
-
-  return shuffle;
+  return array;
 };
 
 module.exports = {

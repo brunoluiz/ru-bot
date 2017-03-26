@@ -20,7 +20,7 @@ server.listen(process.env.PORT || 3978, () => {
 // Add API endpoints
 server.post('/api/messages', connector.listen());
 
-server.get('/api/menu', (req, res, next) => {
+server.get('/api/menu', (req, res) => {
   Menu.getActualWeek((err, result) => {
     res.send(result);
   });

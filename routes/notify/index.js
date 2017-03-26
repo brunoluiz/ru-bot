@@ -5,7 +5,7 @@ const bot = require('../../bot').bot;
 const NotifyRouter = new Router();
 
 // add a route like you would on a restify server instance
-NotifyRouter.post('/api/notify/:token', (req, res) => {
+NotifyRouter.post('/api/notify/:token', (req, res, next) => {
   if (req.params.token !== process.env.SECTOKEN) {
     res.send(401);
   }
@@ -15,7 +15,8 @@ NotifyRouter.post('/api/notify/:token', (req, res) => {
     subscriptions.forEach(subscription =>
       bot.beginDialog(subscription.address, 'Menu:Today')));
 
-  res.send(200);
+  res.send(201);
+  return next();
 });
 
 module.exports = NotifyRouter;

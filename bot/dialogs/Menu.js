@@ -39,47 +39,47 @@ library.dialog('Day', (session, results) => {
   return getMenu(session, date);
 });
 
-library.dialog('Menu', [(session) => {
+library.dialog('Menu', [(session, results, next) => {
   session.sendTyping();
+  return next();
+}, session => Menu.getActualWeek((err, result) => {
+  const cards = [];
+  const images = Utils.shuffle(foods);
 
-  // Fetch the menu data and send it
-  Menu.getActualWeek((err, result) => {
-    const cards = [];
-    const images = Utils.shuffle(foods);
+  // TODO: check if there is a menu for this day
+  result
+    .filter(item => moment(item.date).isSameOrAfter(moment(), 'day'))
+    .sort((a, b) => (moment(a.date).isAfter(b.date) ? 1 : -1))
+    .forEach((item, index) => {
+      const payload = JSON.stringify({ date: item.date });
 
-    // TODO: check if there is a menu for this day
-    result
-      .filter(item => moment(item.date).isSameOrAfter(moment(), 'day'))
-      .sort((a, b) => (moment(a.date).isAfter(b.date) ? 1 : -1))
-      .forEach((item, index) => {
-        const payload = JSON.stringify({ date: item.date });
+      const date = moment(item.date).locale('pt-br').utc();
+      const dateNumber = date.format('DD/M/YY');
+      const dateString = date.format('dddd');
+      const title = `${dateString} (${dateNumber})`;
 
-        const date = moment(item.date).locale('pt-br').utc();
-        const dateNumber = date.format('DD/M/YY');
-        const dateString = date.format('dddd');
-        const title = `${dateString} (${dateNumber})`;
+      const buttonText = `${I18n(session, 'view')} ${dateString}`;
+      const button = builder.CardAction.dialogAction(session, 'DayMenu', payload, buttonText);
 
-        const buttonText = `${I18n(session, 'view')} ${dateString}`;
-        const button = builder.CardAction.dialogAction(session, 'DayMenu', payload, buttonText);
+      const card = new builder.ThumbnailCard(session)
+        .title(title)
+        .images([
+          builder.CardImage.create(session, images[index]),
+        ])
+        .buttons([button])
+        .tap(button);
 
-        const card = new builder.ThumbnailCard(session)
-          .title(title)
-          .images([
-            builder.CardImage.create(session, images[index]),
-          ])
-          .buttons([button])
-          .tap(button);
+      cards.push(card);
 
-        cards.push(card);
-      });
+      return card;
+    });
 
-    const carousel = new builder.Message(session)
-        .textFormat(builder.TextFormat.xml)
-        .attachmentLayout(builder.AttachmentLayout.carousel)
-        .attachments(cards);
+  const carousel = new builder.Message(session)
+      .textFormat(builder.TextFormat.xml)
+      .attachmentLayout(builder.AttachmentLayout.carousel)
+      .attachments(cards);
 
-    session.endDialog(carousel);
-  });
-}]);
+  session.endDialog(carousel);
+})]);
 
 module.exports = library;

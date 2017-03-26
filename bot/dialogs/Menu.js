@@ -28,22 +28,21 @@ const cardImages = [
 // };
 
 // Get the specified date menu item
-const getMenu = (session, date) => (
-  Menu.getDay(date, (err, result) => {
-    if (err || !result) return session.endDialog('menu:error');
+const getMenu = (session, date) => Menu.getDay(date, (err, result) => {
+  if (err || !result) return session.endDialog('menu:error');
 
-    session.sendTyping();
+  session.sendTyping();
 
-    // Format the menu and send it
-    const menu = Formatter.menu(session, result);
-    return session.endDialog(menu);
-  })
-);
+  // Format the menu and send it
+  const menu = Formatter.menu(session, result);
+  return session.endDialog(menu);
+});
 
 library.dialog('Today', (session) => {
   const date = moment().utc().toDate().setUTCHours(0, 0, 0, 0);
   return getMenu(session, date);
 });
+
 library.dialog('Tomorrow', (session) => {
   const date = moment()
     .add(1, 'day')
@@ -51,6 +50,7 @@ library.dialog('Tomorrow', (session) => {
     .setUTCHours(0, 0, 0, 0);
   return getMenu(session, date);
 });
+
 library.dialog('Day', (session, results) => {
   const date = JSON.parse(results.data).date;
   return getMenu(session, date);
@@ -64,7 +64,7 @@ library.dialog('Menu', [(session) => {
     const cards = [];
     const images = Utils.shuffle(cardImages);
 
-    result.sort((a, b) => moment(a.date).isAfter(moment(a.b)) ? -1 : 1)
+    result.sort((a, b) => (moment(a.date).isAfter(moment(b.date)) ? 1 : -1))
       .forEach((item, index) => {
         const payload = JSON.stringify({ date: item.date });
 

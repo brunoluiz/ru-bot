@@ -30,11 +30,6 @@ curl -X POST -H "Content-Type: application/json" -d '{
     },
     {
       "type":"postback",
-      "title":"Sobre e Infos",
-      "payload":"action?Info"
-    },
-    {
-      "type":"postback",
       "title":"Menu",
       "payload":"action?Help"
     }

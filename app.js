@@ -12,9 +12,8 @@ mongoose.connect(process.env.MONGODB_URI);
 
 // Setup Restify Server
 const server = restify.createServer();
-server.listen(process.env.PORT || 3978, () => {
-  console.log('%s listening to %s', server.name, server.url);
-});
+server.listen(process.env.PORT || 3978, () =>
+  console.log('%s listening to %s', server.name, server.url));
 
 MessagesRouter.applyRoutes(server);
 ScrapRouter.applyRoutes(server);

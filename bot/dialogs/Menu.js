@@ -2,22 +2,11 @@ const builder = require('botbuilder');
 const Formatter = require('../../helpers/Formatter');
 const Utils = require('../../helpers/Utils');
 const I18n = require('../../helpers/I18n');
+const foods = require('../foods.js');
 const moment = require('moment');
 const Menu = require('../../models/Menu');
 
 const library = new builder.Library('Menu');
-const url = process.env.URL || `http://localhost:${process.env.PORT}`;
-
-const cardImages = [
-  `${url}/public/assets/images/food-1.jpg`,
-  `${url}/public/assets/images/food-2.jpg`,
-  `${url}/public/assets/images/food-3.jpg`,
-  `${url}/public/assets/images/food-4.jpg`,
-  `${url}/public/assets/images/food-5.jpg`,
-  `${url}/public/assets/images/food-6.jpg`,
-  `${url}/public/assets/images/food-7.jpg`,
-  `${url}/public/assets/images/food-8.jpg`,
-];
 
 // Get the specified date menu item
 const getMenu = (session, date) => Menu.getDay(date, (err, result) => {
@@ -54,7 +43,7 @@ library.dialog('Menu', [(session) => {
   // Fetch the menu data and send it
   Menu.getActualWeek((err, result) => {
     const cards = [];
-    const images = Utils.shuffle(cardImages);
+    const images = Utils.shuffle(foods);
 
     result.sort((a, b) => (moment(a.date).isAfter(moment(b.date)) ? 1 : -1))
       .forEach((item, index) => {

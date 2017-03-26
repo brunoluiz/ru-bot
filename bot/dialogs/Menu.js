@@ -20,15 +20,15 @@ const getMenu = (session, date) => Menu.getDay(date, (err, result) => {
 });
 
 library.dialog('Today', (session) => {
-  const date = moment().utc().toDate().setUTCHours(0, 0, 0, 0);
+  const date = moment().startOf('day').toDate();
   return getMenu(session, date);
 });
 
 library.dialog('Tomorrow', (session) => {
   const date = moment()
+    .startOf('day')
     .add(1, 'day')
-    .utc().toDate()
-    .setUTCHours(0, 0, 0, 0);
+    .toDate();
   return getMenu(session, date);
 });
 

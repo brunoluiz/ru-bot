@@ -6,7 +6,6 @@ const moment = require('moment');
 const Menu = require('../../models/Menu');
 
 const library = new builder.Library('Menu');
-
 const url = process.env.URL || `http://localhost:${process.env.PORT}`;
 
 const cardImages = [
@@ -19,13 +18,6 @@ const cardImages = [
   `${url}/public/assets/images/food-7.jpg`,
   `${url}/public/assets/images/food-8.jpg`,
 ];
-
-// const getButtonLabel = (date) => {
-//   const dateMoment = moment(date).locale('pt-br').utc();
-//   const dateNumber = dateMoment.format('DD/M/YY');
-//   const dateString = dateMoment.format('dddd');
-//   return `${dateString} (${dateNumber})`;
-// };
 
 // Get the specified date menu item
 const getMenu = (session, date) => Menu.getDay(date, (err, result) => {

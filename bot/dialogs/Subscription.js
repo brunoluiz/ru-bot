@@ -1,7 +1,8 @@
 const builder = require('botbuilder');
-const library = new builder.Library('Subscription');
 const Subscription = require('../../models/Subscription');
+const console = require('console');
 
+const library = new builder.Library('Subscription');
 const isResponseYes = results => (results.response && results.response.entity === 'yes');
 
 // ENTRY POINT

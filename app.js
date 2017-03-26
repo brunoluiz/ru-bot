@@ -4,7 +4,7 @@ const console = require('console');
 
 const ScrapRouter = require('./routes/scrap');
 const MessagesRouter = require('./routes/messages');
-const NotifyRouter = require('./routes/scrap');
+const NotifyRouter = require('./routes/notify');
 const MenuRouter = require('./routes/menu');
 
 // Connect to the MongoDB

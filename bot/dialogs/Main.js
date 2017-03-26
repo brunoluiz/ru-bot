@@ -1,12 +1,11 @@
 const I18n = require('../../helpers/I18n');
 const builder = require('botbuilder');
+
 const library = new builder.Library('Main');
-
 const options = {};
-
 const url = process.env.URL || `http://localhost:${process.env.PORT}`;
 
-library.dialog('Main', (session, results) => {
+library.dialog('Main', (session) => {
   options[I18n(session, 'options:subscribe')] = { id: 'Subscription:Subscription' };
   options[I18n(session, 'options:todaymenu')] = { id: 'Menu:Today' };
   options[I18n(session, 'options:tmrwmenu')] = { id: 'Menu:Tomorrow' };

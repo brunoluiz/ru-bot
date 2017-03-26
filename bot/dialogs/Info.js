@@ -1,7 +1,7 @@
 const I18n = require('../../helpers/I18n');
 const builder = require('botbuilder');
-const library = new builder.Library('Info');
 
+const library = new builder.Library('Info');
 const options = {};
 
 library.dialog('Info', [(session) => {
@@ -9,7 +9,7 @@ library.dialog('Info', [(session) => {
   options[I18n(session, 'info:prices')] = { id: 'Info:Prices' };
   options[I18n(session, 'info:credits')] = { id: 'Info:Credits' };
 
-  builder.Prompts.choice(session, 'info:prompt', options, {
+  return builder.Prompts.choice(session, 'info:prompt', options, {
     maxRetries: 0,
   });
 }, (session, results) => {
@@ -22,7 +22,7 @@ library.dialog('Info', [(session) => {
   session.beginDialog(option.id);
 
   return builder.Prompts.choice(session, 'info:prompt:again', ['yes', 'no'], {
-    maxRetries: 1,
+    maxRetries: 0,
   });
 }, (session, results) => {
   if (!results.response) {

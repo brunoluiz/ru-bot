@@ -28,7 +28,8 @@ server.get('/api/menu', (req, res, next) => {
 
 // TODO: Refactor all this scrapping method
 server.post('/api/populate/:token', (req, res, next) =>
-  axios.get('http://ru.ufsc.br/ru/').then((response) => {
+  axios.get('http://ru.ufsc.br/ru/')
+  .then((response) => {
     if (req.params.token !== process.env.SECTOKEN) {
       return res.send(401);
     }
@@ -40,7 +41,8 @@ server.post('/api/populate/:token', (req, res, next) =>
 
     // First things first: define the start and end date of this menu
     const dateEl = $('p:nth-child(1) > span:first-child').text();
-    const dateRange = dateEl.match(/([1-9][0-9]*)\/([1-9][0-9]*)/g);
+    console.log(dateEl);
+    const dateRange = dateEl.match(/([0-9]*)\/([0-9]*)/g);
     const startDateStr = dateRange[0];
     // const endDateStr = dateRange[1];
     const year = $('.last-update').text().match(/[0-9]{4}/)[0];
@@ -75,7 +77,7 @@ server.post('/api/populate/:token', (req, res, next) =>
 
     res.send(200);
     return next();
-  }));
+  }).catch(error => console.log(error)));
 
 server.post('/api/notify/:token', (req, res) => {
   if (req.params.token !== process.env.SECTOKEN) {

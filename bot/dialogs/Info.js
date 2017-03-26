@@ -11,6 +11,7 @@ library.dialog('Info', [(session) => {
 
   return builder.Prompts.choice(session, 'prompt', options, {
     maxRetries: 0,
+    promptAfterAction: false,
   });
 }, (session, results) => {
   if (!results.response) {
@@ -23,6 +24,7 @@ library.dialog('Info', [(session) => {
 
   return builder.Prompts.choice(session, 'prompt:again', ['yes', 'no'], {
     maxRetries: 0,
+    promptAfterAction: false,
   });
 }, (session, results) => {
   if (!results.response) {
@@ -51,7 +53,7 @@ library.dialog('Timetable', (session) => {
 
 library.dialog('Credits', (session) => {
   session.send('credits:team');
-  session.send('credits:about');
+  session.send('credits:code');
   session.send('credits:about');
 });
 

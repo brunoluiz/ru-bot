@@ -20,6 +20,7 @@ library.dialog('Subscription', session => Subscription.isSubscribed(session, (re
 library.dialog('Subscribe', [(session) => {
   builder.Prompts.choice(session, 'prompt', ['yes', 'no'], {
     maxRetries: 0,
+    promptAfterAction: false,
   });
 }, (session, results, next) => {
   if (isResponseYes(results)) return next();
@@ -40,6 +41,7 @@ library.dialog('Subscribe', [(session) => {
 library.dialog('Cancel', [(session) => {
   builder.Prompts.choice(session, 'cancel', ['yes', 'no'], {
     maxRetries: 0,
+    promptAfterAction: false,
   });
 }, (session, results, next) => {
   if (isResponseYes(results)) return next();

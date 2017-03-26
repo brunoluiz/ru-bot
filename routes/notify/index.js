@@ -9,7 +9,7 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 const NotifyRouter = new Router();
 
-NotifyRouter.post('/api/notify/:token',
+NotifyRouter.get('/api/notify/:token',
   (req, res, next) => authMiddleware(req, res, next),
   (req, res, next) => {
     // Check if there is a menu to notify users about

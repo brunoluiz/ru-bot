@@ -10,7 +10,7 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const ScrapRouter = new Router();
 
 // add a route like you would on a restify server instance
-ScrapRouter.post('/api/scrap/:token',
+ScrapRouter.get('/api/scrap/:token',
   (req, res, next) => authMiddleware(req, res, next),
   (req, res, next) => axios.get('http://ru.ufsc.br/ru/')
     .then((response) => {

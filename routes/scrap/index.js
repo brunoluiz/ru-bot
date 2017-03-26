@@ -2,7 +2,6 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const Menu = require('../../models/Menu');
 const Router = require('restify-router').Router;
-const console = require('console');
 const restify = require('restify');
 const moment = require('moment');
 

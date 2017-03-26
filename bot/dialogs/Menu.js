@@ -19,6 +19,8 @@ const getMenu = (session, date) => Menu.getDay(date, (err, result) => {
   return session.endDialog(menu);
 });
 
+const isEmpty = (object) => 
+
 library.dialog('Today', (session) => {
   const date = moment().utc().toDate().setUTCHours(0, 0, 0, 0);
   return getMenu(session, date);
@@ -45,7 +47,10 @@ library.dialog('Menu', [(session) => {
     const cards = [];
     const images = Utils.shuffle(foods);
 
-    result.sort((a, b) => (moment(a.date).isAfter(moment(b.date)) ? 1 : -1))
+    // TODO: check if there is a menu for this day
+    result
+      .filter(item => moment(item.date).isSameOrAfter(moment(), 'day'))
+      .sort((a, b) => (moment(a.date).isAfter(b.date) ? 1 : -1))
       .forEach((item, index) => {
         const payload = JSON.stringify({ date: item.date });
 
